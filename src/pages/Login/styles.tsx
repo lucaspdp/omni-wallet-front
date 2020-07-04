@@ -37,7 +37,7 @@ export const Right = styled.div`
     left: 10%;
     overflow-y: scroll;
 
-    &::scrollbar-width{
+    ::-webkit-scrollbar{
       width: 0px;
     }
 
@@ -163,8 +163,7 @@ export const FormLink = styled(Link)`
 `;
 export const TermsOfUse = styled.span`
 
-  position: absolute;
-  bottom: 0;
+  justify-self: flex-end;
 
 `;
 
