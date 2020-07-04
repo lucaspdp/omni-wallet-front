@@ -26,8 +26,8 @@ export const Container = styled.div<SideMenuItemProps>`
   ${(props) =>
     props.selected
       ? `
-  background-color: var(--primary-color);
-  color: white;
+      background-color: rgba(0, 0, 0, 0.05);
+        border-left: 3px solid var(--primary-color);
   `
       : ``}
 

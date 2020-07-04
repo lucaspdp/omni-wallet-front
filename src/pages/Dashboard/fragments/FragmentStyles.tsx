@@ -26,6 +26,8 @@ export const FullRowCard = styled.div`
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.02);
   transition: box-shadow 0.3s;
   margin-bottom: 20px;
+  padding: 10px 20px;
+  overflow: auto;
   &:hover {
     box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
   }

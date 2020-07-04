@@ -28,7 +28,7 @@ export const Body = styled.div`
   border-top-left-radius: 4px;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
-  background-color: #f0f0f0;
+  background-color: #e9e9e9;
   z-index: 1;
   padding: 10px 20px;
 `;
@@ -39,5 +39,5 @@ export const BodyShadowFx = styled.div`
   grid-column: 2 / span 1;
   z-index: 2;
   pointer-events: none;
-  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.07);
 `;

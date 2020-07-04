@@ -23,7 +23,7 @@ export default function MenuItem(props: MenuItemProps) {
     >
       <MenuIcon>
         <SvgIconStyle
-          color={props.isSelected ? '#FFF' : props.iconColor ?? '#404040'}
+          color={props.iconColor ?? '#404040'}
           size={props.iconSize}
           source={props.image}
         />

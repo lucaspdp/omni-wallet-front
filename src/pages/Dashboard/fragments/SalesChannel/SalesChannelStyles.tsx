@@ -45,6 +45,6 @@ export const FragmentChannelSelector = styled(FullRowCard)`
   box-sizing: border-box;
   min-width: 100px;
   height: 50px;
-  padding: 5px 10px;
+  padding: 5px 20px;
   
 `;

@@ -6,7 +6,7 @@ import PickChannelVisualization from './pickChannelView/PickChannelVisualization
 import ChannelSelector from './channelSelector/ChannelSelector';
 
 export default function SalesChannelFragment() {
-  const [selectedView, setSelectedView] = useState('');
+  const [selectedView, setSelectedView] = useState('SingleChannel');
   const views: any = {
     AllChannels: {
       label: 'Todos os canais',
