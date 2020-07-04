@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/static/js/main.901d7903.chunk.js",
-    "main.js.map": "/static/js/main.901d7903.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.7e12cbba.js",
-    "runtime-main.js.map": "/static/js/runtime-main.7e12cbba.js.map",
-    "static/js/2.095a219e.chunk.js": "/static/js/2.095a219e.chunk.js",
-    "static/js/2.095a219e.chunk.js.map": "/static/js/2.095a219e.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.8e6e94ae5e0d1f5890a123d2ecfe2bcb.js": "/precache-manifest.8e6e94ae5e0d1f5890a123d2ecfe2bcb.js",
-    "service-worker.js": "/service-worker.js",
-    "static/js/2.095a219e.chunk.js.LICENSE.txt": "/static/js/2.095a219e.chunk.js.LICENSE.txt",
-    "static/media/analytics.svg": "/static/media/analytics.3b9902c2.svg",
-    "static/media/brain.svg": "/static/media/brain.a35c564e.svg",
-    "static/media/ham.menu.svg": "/static/media/ham.menu.4c2c628d.svg",
-    "static/media/logo.svg": "/static/media/logo.c79efc72.svg"
+    "main.js": "/omni-wallet-front/static/js/main.901d7903.chunk.js",
+    "main.js.map": "/omni-wallet-front/static/js/main.901d7903.chunk.js.map",
+    "runtime-main.js": "/omni-wallet-front/static/js/runtime-main.62ce0722.js",
+    "runtime-main.js.map": "/omni-wallet-front/static/js/runtime-main.62ce0722.js.map",
+    "static/js/2.e0bf84ad.chunk.js": "/omni-wallet-front/static/js/2.e0bf84ad.chunk.js",
+    "static/js/2.e0bf84ad.chunk.js.map": "/omni-wallet-front/static/js/2.e0bf84ad.chunk.js.map",
+    "index.html": "/omni-wallet-front/index.html",
+    "precache-manifest.d64f8ad3be5a241df56a3a0fc85209b8.js": "/omni-wallet-front/precache-manifest.d64f8ad3be5a241df56a3a0fc85209b8.js",
+    "service-worker.js": "/omni-wallet-front/service-worker.js",
+    "static/js/2.e0bf84ad.chunk.js.LICENSE.txt": "/omni-wallet-front/static/js/2.e0bf84ad.chunk.js.LICENSE.txt",
+    "static/media/analytics.svg": "/omni-wallet-front/static/media/analytics.3b9902c2.svg",
+    "static/media/brain.svg": "/omni-wallet-front/static/media/brain.a35c564e.svg",
+    "static/media/ham.menu.svg": "/omni-wallet-front/static/media/ham.menu.4c2c628d.svg",
+    "static/media/logo.svg": "/omni-wallet-front/static/media/logo.c79efc72.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7e12cbba.js",
-    "static/js/2.095a219e.chunk.js",
+    "static/js/runtime-main.62ce0722.js",
+    "static/js/2.e0bf84ad.chunk.js",
     "static/js/main.901d7903.chunk.js"
   ]
 }
