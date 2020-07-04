@@ -1,6 +1,5 @@
 import React from 'react';
-import { Container, Header, Body } from './styles';
-import SideMenu from '../../components/SideMenu';
+import { Container, Header, Body, SideMenu, BodyShadowFx } from './styles';
 
 export default function Dashboard() {
   return (
@@ -8,6 +7,7 @@ export default function Dashboard() {
       <Header></Header>
       <SideMenu></SideMenu>
       <Body></Body>
+      <BodyShadowFx />
     </Container>
   );
 }

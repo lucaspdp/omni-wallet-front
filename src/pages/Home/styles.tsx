@@ -3,9 +3,7 @@ const headerHeight = '';
 
 export const Content = styled.div`
   display: grid;
-  grid-template-row: ${headerHeight};
+  grid-template-rows: ${headerHeight};
 `;
 
-export const Header = styled.div`
-
-`;
+export const Header = styled.div``;

@@ -1,4 +1,24 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export type SvgIconProps = {
+  source: string;
+  color?: string;
+  size?: string;
+};
+
+export const SvgIconStyle = styled.div<SvgIconProps>`
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.color ?? '#303030'};
+  mask-image: url(${(props) => props.source});
+  -webkit-mask-image: url(${(props) => props.source});
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: ${(props) => props.size ?? '100%'};
+  -webkit-mask-size: ${(props) => props.size ?? '100%'};
+`;
 
 export default createGlobalStyle`
   @import url('//db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book');
@@ -33,4 +53,7 @@ export default createGlobalStyle`
     font-family: "Circular Std Book", 'Helvetica', Arial, sans-serif;
   }
 
+  img {
+    max-height: 100%;
+  }
 `;

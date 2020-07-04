@@ -1,4 +1,5 @@
 export interface ISideMenuItem {
-  image : string;
-  label : string;
+  _id: string;
+  image: string;
+  label: string;
 }

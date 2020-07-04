@@ -1,15 +1,15 @@
-import React, { useState, FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import { 
-  Content, 
-  Left, 
-  Right, 
-  Logo, 
-  BrandName, 
-  Title, 
-  Welcome, 
+import {
+  Content,
+  Left,
+  Right,
+  Logo,
+  BrandName,
+  Title,
+  Welcome,
   FormLogin,
   FormInput,
   RememberMe,
@@ -17,16 +17,15 @@ import {
   TermsOfUse,
   FormButton,
   FormDiv,
-  FormLink
+  FormLink,
 } from './styles';
 
 import LogoImg from '../../assets/logo.svg';
 
 export default function Login() {
-
   const history = useHistory();
 
-  function handleSubmit(e : FormEvent){
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     history.push('/dashboard');
@@ -39,7 +38,7 @@ export default function Login() {
       </Left>
       <Right>
         <Title>
-          <Logo src={LogoImg} alt="Mercado Integrado"/>
+          <Logo src={LogoImg} alt="Mercado Integrado" />
           <BrandName>
             mercado<br></br>integrado
           </BrandName>
@@ -47,9 +46,9 @@ export default function Login() {
 
         <Welcome>Welcome back! Please login to your account.</Welcome>
 
-        <FormLogin onSubmit={e=> handleSubmit(e)}>
-          <FormInput type="text" placeholder="Username"/>
-          <FormInput type="password" placeholder="Password"/>
+        <FormLogin onSubmit={(e) => handleSubmit(e)}>
+          <FormInput type="text" placeholder="Username" />
+          <FormInput type="password" placeholder="Password" />
 
           <FormDiv>
             <div>
@@ -59,7 +58,9 @@ export default function Login() {
             <FormLink to="/">Forgot Password</FormLink>
           </FormDiv>
           <FormDiv>
-            <FormButton isPrimaryColor={true} type="submit">Login</FormButton>
+            <FormButton isPrimaryColor={true} type="submit">
+              Login
+            </FormButton>
             <FormButton type="button">Sign Up</FormButton>
           </FormDiv>
         </FormLogin>

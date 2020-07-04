@@ -1,0 +1,5 @@
+{
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
+  "emmet.showAbbreviationSuggestions": false,
+  "emmet.showExpandedAbbreviation": "never"
+}
