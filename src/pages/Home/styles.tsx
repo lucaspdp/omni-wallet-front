@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+const headerHeight = '';
 
 export const Content = styled.div`
-
-  height: 100%;
-
+  display: grid;
+  grid-template-rows: ${headerHeight};
 `;
+
+export const Header = styled.div``;
