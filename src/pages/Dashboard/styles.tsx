@@ -24,6 +24,7 @@ export const SideMenu = styled(StyleMenuComponent)`
 `;
 
 export const Body = styled.div`
+  position: relative;
   border-top-left-radius: 4px;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;

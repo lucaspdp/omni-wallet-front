@@ -8,7 +8,7 @@ import RecommendationIcon from '../../../assets/img/icons/recomendation.svg';
 import ConfigurationIcon from '../../../assets/img/icons/configuration.svg';
 import PrivacyIcon from '../../../assets/img/icons/privacy.svg';
 // Fragments
-import SalesChannelFragment from './SalesChannelFragment';
+import SalesChannelFragment from './SalesChannel/SalesChannelFragment';
 import IncomeTimelineFragment from './IncomeTimelineFragment';
 import SimulationFragment from './SimulationFragment';
 import BillsFragment from './BillsFragment';

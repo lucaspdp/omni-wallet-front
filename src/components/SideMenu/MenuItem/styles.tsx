@@ -64,4 +64,5 @@ export const MenuLabel = styled.div<{ expanded: boolean }>`
   box-sizing: border-box;
   padding-left: 15px;
   font-weight: lighter;
+  min-width: 200px;
 `;

@@ -10,6 +10,19 @@ export const HeaderUserOptions = styled.div`
 export const UserAvatar = styled.div`
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
+              
+  & > div {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 80%;
+    width: 80%;
+    margin-top: 10%;
+    border: 1px solid rgba(0,0,0,0.4);
+    & img {
+      max-height: unset;
+      width: 100%;
+    }
+  }
 `;
 
 export const AvatarClipCounding = styled(SvgIconStyle)`
