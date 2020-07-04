@@ -42,3 +42,10 @@ export const BrandContainer = styled.div<ContainerProps>`
     margin-top: -2px;
   }
 `;
+
+
+export const MenuItemSeparator = styled.div`
+  height: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  margin-bottom: 10px;
+`;

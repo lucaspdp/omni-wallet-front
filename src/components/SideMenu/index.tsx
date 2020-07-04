@@ -4,7 +4,7 @@ import HamburguerMenuImg from '../../assets/img/icons/ham.menu.thin.svg';
 import MenuItem from './MenuItem';
 import { ISideMenuItem } from './ISideMenuItem';
 
-import { Container, MenuBrand, BrandContainer } from './styles';
+import { Container, MenuBrand, BrandContainer, MenuItemSeparator } from './styles';
 import { SvgIconStyle } from '../../styles/global';
 
 type SideMenuProps = {
@@ -16,6 +16,7 @@ type SideMenuProps = {
   };
   selectedItem: string;
   onMenuItemClick: (id: string) => void;
+  separatorAfter?: string[];
 };
 
 export default function SideMenu(props: SideMenuProps) {
@@ -77,24 +78,32 @@ export default function SideMenu(props: SideMenuProps) {
         </BrandContainer>
       </MenuBrand>
 
-      {menuItens.map((item) => (
-        <MenuItem
-          key={item._id}
-          isSelected={props.selectedItem === item._id}
-          isExpanded={expanded}
-          label={item.label}
-          image={item.icon}
-          iconSize={'70%'}
-          iconColor={'var(--primary-color)'}
-          onClickFn={() => {
-            if (sideMenuExpansionTimeout != 0) {
-              cancelSideMenuExpansion();
-            }
+      {menuItens.map((item) => {
+        const retItem = [
+          <MenuItem
+            key={item._id}
+            isSelected={props.selectedItem === item._id}
+            isExpanded={expanded}
+            label={item.label}
+            image={item.icon}
+            iconSize={'70%'}
+            iconColor={'var(--primary-color)'}
+            onClickFn={() => {
+              if (sideMenuExpansionTimeout !== 0) {
+                cancelSideMenuExpansion();
+              }
 
-            props.onMenuItemClick(item._id);
-          }}
-        ></MenuItem>
-      ))}
+              props.onMenuItemClick(item._id);
+            }}
+          />,
+        ];
+
+        if (props.separatorAfter?.includes(item._id)) {
+          retItem.push(<MenuItemSeparator />);
+        }
+        return retItem;
+      })}
+
     </Container>
   );
 }

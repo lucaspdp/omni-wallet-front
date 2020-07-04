@@ -1,14 +1,20 @@
 import React from 'react';
+// Icons
 import SaleChannelIcon from '../../../assets/img/icons/sales.svg';
 import TimelineIcon from '../../../assets/img/icons/timeline.svg';
 import BillsIcon from '../../../assets/img/icons/bill.svg';
 import SimulationIcon from '../../../assets/img/icons/plan.ahead.svg';
 import RecommendationIcon from '../../../assets/img/icons/recomendation.svg';
+import ConfigurationIcon from '../../../assets/img/icons/configuration.svg';
+import PrivacyIcon from '../../../assets/img/icons/privacy.svg';
+// Fragments
 import SalesChannelFragment from './SalesChannelFragment';
 import IncomeTimelineFragment from './IncomeTimelineFragment';
 import SimulationFragment from './SimulationFragment';
 import BillsFragment from './BillsFragment';
 import RecommendationFragment from './RecommendationFragment';
+import ConfigurationFragment from './ConfigurationFragment';
+import PrivacyFragment from './PrivacyFragment';
 
 export const DashboardFragments = asFragment({
   // Sale Channel
@@ -29,17 +35,29 @@ export const DashboardFragments = asFragment({
     label: 'Contas a Pagar',
     fragment: <BillsFragment />,
   },
-  // Simulate 
+  // Simulate
   SimulateScenario: {
     icon: SimulationIcon,
     label: 'Simular',
     fragment: <SimulationFragment />,
   },
-  //Recommendation
+  // Recommendation
   Recommendations: {
     icon: RecommendationIcon,
     label: 'Recomendações',
     fragment: <RecommendationFragment />,
+  },
+  // -- Separator
+  // Configuration
+  Configuration: {
+    icon: ConfigurationIcon,
+    label: 'Configurações',
+    fragment: <ConfigurationFragment />,
+  },
+  Privacy: {
+    icon: PrivacyIcon,
+    label: 'Privacidade',
+    fragment: <PrivacyFragment />,
   },
 });
 
