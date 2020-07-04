@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/omni-wallet-front/precache-manifest.423535daab5ce10e8f413f0b35121b98.js"
+  "/omni-wallet-front/precache-manifest.0d089857676825b88c4fa95a66672a5d.js"
 );
 
 self.addEventListener('message', (event) => {
