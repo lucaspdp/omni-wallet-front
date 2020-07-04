@@ -1,14 +1,45 @@
-import React from 'react';
-import { Container } from './SalesChannelStyles';
-import { FragmentTitle, FragmentHeaderOptions, FragmentHeader } from '../FragmentStyles';
+import React, { useState } from 'react';
+import { Container, ChannelVisualization, FragmentViewSelector, FragmentChannelSelector, FragmentHeader } from './SalesChannelStyles';
+import HorizontalMenu from '../../../../components/HorizontalMenu/HorizontalMenu';
+import AllChannelsVisualization from './allChannelsView/AllChannelsVisualization';
+import PickChannelVisualization from './pickChannelView/PickChannelVisualization';
+import ChannelSelector from './channelSelector/ChannelSelector';
 
 export default function SalesChannelFragment() {
+  const [selectedView, setSelectedView] = useState('');
+  const views: any = {
+    AllChannels: {
+      label: 'Todos os canais',
+      channelVisualization: <AllChannelsVisualization />,
+    },
+    SingleChannel: {
+      label: 'Por canal',
+      channelVisualization: <PickChannelVisualization />,
+    },
+  };
   return (
     <Container>
       <FragmentHeader>
-        <FragmentTitle>Canal de Venda</FragmentTitle>
-        <FragmentHeaderOptions>Canal de Venda</FragmentHeaderOptions>
+        <FragmentViewSelector>
+          <HorizontalMenu
+            displayMenuTitle={false}
+            onMenuItemClick={(id: string) => {
+              setSelectedView(id);
+            }}
+            selectedItem={selectedView}
+            items={views}
+          ></HorizontalMenu>
+        </FragmentViewSelector>
+        <FragmentChannelSelector>
+          <ChannelSelector></ChannelSelector>
+        </FragmentChannelSelector>
       </FragmentHeader>
+      <ChannelVisualization>
+        {(() => {
+          if (selectedView != '') return views[selectedView].channelVisualization;
+          else return '';
+        })()}
+      </ChannelVisualization>
     </Container>
   );
 }

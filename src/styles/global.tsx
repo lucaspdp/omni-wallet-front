@@ -44,13 +44,17 @@ export default createGlobalStyle`
   html, body, #root{
     height: 100%;
     
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Circular Std Book','Source Sans Pro', sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
   }
 
   body{
-    --primary-color: #2DBC9C;
+    --primary-color: #2DBC9CFF;
+    --primary-color-75: #2DBC9CAA;
+    --primary-color-50: #2DBC9C88;
+    --primary-color-25: #2DBC9C44;
+    
     --secondary-color: #D94343; 
     --font-primary: #43425D;
   }

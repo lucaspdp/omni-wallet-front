@@ -1,7 +1,7 @@
 import React from 'react';
 // Icons
 import SaleChannelIcon from '../../../assets/img/icons/sales.svg';
-import TimelineIcon from '../../../assets/img/icons/timeline.svg';
+import TimelineIcon from '../../../assets/img/icons/calendar.svg';
 import BillsIcon from '../../../assets/img/icons/bill.svg';
 import SimulationIcon from '../../../assets/img/icons/plan.ahead.svg';
 import RecommendationIcon from '../../../assets/img/icons/recomendation.svg';

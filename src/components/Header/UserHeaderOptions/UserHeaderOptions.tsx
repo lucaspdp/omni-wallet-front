@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import faker from 'faker';
 
 import AvatarDefault from '../../../assets/img/icons/avatar.svg';
@@ -6,18 +6,21 @@ import AvatarDefault from '../../../assets/img/icons/avatar.svg';
 import { HeaderUserOptions, UserAvatar, UserInformation, AvatarClipCounding } from './styles';
 
 export default function UserHeaderOptions() {
-  const userImage = faker.image.avatar();
+  const [userImage] = useState(faker.image.avatar());
+  const [nameSuffix] = useState(faker.name.suffix());
+  const [lastName] = useState(faker.name.lastName());
+  const [firstName] = useState(faker.name.firstName());
 
   return (
     <HeaderUserOptions>
       <UserAvatar>
         <div>
-          <img alt='User profile' src={userImage ?? <AvatarClipCounding source={AvatarDefault} size="60%" />} />
+          <img alt="User profile" src={userImage ?? <AvatarClipCounding source={AvatarDefault} size="60%" />} />
         </div>
       </UserAvatar>
       <UserInformation>
         <div>
-          {faker.name.suffix()} {faker.name.lastName()}, {faker.name.firstName()}
+          [{nameSuffix}] {lastName}, {firstName}
         </div>
         <div>{faker.company.companyName()}</div>
       </UserInformation>

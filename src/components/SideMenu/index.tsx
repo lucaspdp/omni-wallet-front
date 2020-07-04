@@ -2,7 +2,7 @@ import React, { useState, MouseEvent } from 'react';
 import AppLogo from '../../assets/logo.svg';
 import HamburguerMenuImg from '../../assets/img/icons/ham.menu.thin.svg';
 import MenuItem from './MenuItem';
-import { ISideMenuItem } from './ISideMenuItem';
+import { IMenuItem } from './ISideMenuItem';
 
 import { Container, MenuBrand, BrandContainer, MenuItemSeparator } from './styles';
 import { SvgIconStyle } from '../../styles/global';
@@ -20,13 +20,20 @@ type SideMenuProps = {
 };
 
 export default function SideMenu(props: SideMenuProps) {
-  let menuItens: ISideMenuItem[] = [];
-  if (props.items) {
-    for (const itemId in props.items) {
-      const item = props.items[itemId];
-      menuItens.push({ _id: itemId, ...item });
-    }
-  }
+  
+  const [menuItens] = useState(
+    (() => {
+      const allItens: IMenuItem[] = [];
+      for (const itemId in props.items) {
+        allItens.push({
+          _id: itemId,
+          ...props.items[itemId],
+        });
+      }
+      return allItens;
+    })(),
+  );
+
 
   const sideMenuExpansionDelay = 900;
 
@@ -103,7 +110,6 @@ export default function SideMenu(props: SideMenuProps) {
         }
         return retItem;
       })}
-
     </Container>
   );
 }

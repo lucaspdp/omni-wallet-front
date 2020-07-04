@@ -1,1 +1,10 @@
-export const DataMock: any = {};
+export const DataMock: any = {
+  marketplaces : [
+    
+  ]
+
+};
+
+export interface IMarketplaceData {
+
+}
