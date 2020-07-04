@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "989ec421428337bdc2dbe12656298929",
+    "revision": "d900a06b5bb4ef67f8fc9a0dce4c6889",
     "url": "/omni-wallet-front/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/omni-wallet-front/static/js/2.e0bf84ad.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f940b21ce1daf547ece6",
-    "url": "/omni-wallet-front/static/js/main.901d7903.chunk.js"
+    "revision": "5aaa948b2817e534f515",
+    "url": "/omni-wallet-front/static/js/main.3b22df6c.chunk.js"
   },
   {
     "revision": "734fcdc072a62767c85f",
