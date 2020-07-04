@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Header, Body, SideMenu, BodyShadowFx } from './styles';
+import { DashboardFragments } from './fragments/DashboardFragments';
 
 export default function Dashboard() {
+  const [selectedItem, setSelectedItem] = useState<keyof typeof DashboardFragments>('SalesChannel');
   return (
     <Container>
       <Header></Header>
-      <SideMenu></SideMenu>
-      <Body></Body>
+      <SideMenu
+        selectedItem={selectedItem as string}
+        onMenuItemClick={(id: string) => setSelectedItem(id as keyof typeof DashboardFragments)}
+        items={DashboardFragments}
+      ></SideMenu>
+      <Body>{DashboardFragments[selectedItem].fragment}</Body>
       <BodyShadowFx />
     </Container>
   );

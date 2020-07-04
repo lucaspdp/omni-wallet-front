@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, MenuIcon, MenuLabel } from './styles';
 import { SvgIconStyle } from '../../../styles/global';
 

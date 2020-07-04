@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import StyleMenuComponent from '../../components/SideMenu';
+import HeaderComponent from '../../components/Header';
 
 export const Container = styled.div`
   height: 100%;
@@ -12,10 +13,9 @@ export const Container = styled.div`
   grid-template-rows: 45px 1fr;
 `;
 
-export const Header = styled.div`
+export const Header = styled(HeaderComponent)`
   grid-row: 1 / span 1;
   grid-column: 2 / span 1;
-  width: 100%;
 `;
 
 export const SideMenu = styled(StyleMenuComponent)`
@@ -24,13 +24,16 @@ export const SideMenu = styled(StyleMenuComponent)`
 `;
 
 export const Body = styled.div`
+  border-top-left-radius: 4px;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
   background-color: #f0f0f0;
   z-index: 1;
+  padding: 10px 20px;
 `;
 
 export const BodyShadowFx = styled.div`
+  border-top-left-radius: 4px;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
   z-index: 2;

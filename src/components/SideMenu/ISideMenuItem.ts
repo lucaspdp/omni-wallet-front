@@ -1,5 +1,5 @@
 export interface ISideMenuItem {
   _id: string;
-  image: string;
+  icon: string;
   label: string;
 }

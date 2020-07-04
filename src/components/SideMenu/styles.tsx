@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-const itemHeight = 45;
 export const SideMenuContainerExpandedWidth = '20%';
 export const SideMenuContainerContractedWidth = '55px';
 
@@ -20,28 +19,26 @@ export const Container = styled.div<ContainerProps>`
   transition: width 0.4s;
   ${(props) =>
     props.isExpanded ? `width: ${SideMenuContainerExpandedWidth};` : `width: ${SideMenuContainerContractedWidth};`}
-
-  & > div {
-    margin-bottom: 10px;
-    height: ${itemHeight}px;
-    line-height: ${itemHeight}px;
-    box-sizing: border-box;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: ${itemHeight - 10}px 1fr;
-    grid-template-rows: ${itemHeight - 10}px;
-  }
 `;
 
 export const HarmburguerMenu = styled.div``;
 
+export const MenuBrand = styled.div`
+  height: 80px;
+  margin: 15px 0;
+  align-content: center;
+  text-align: center;
+  width: 100%;
+`;
+
 export const BrandContainer = styled.div<ContainerProps>`
-  display: block;
-  ${(props) =>
-    props.isExpanded
-      ? `width: ${SideMenuContainerExpandedWidth};
-      height : $`
-      : `width: ${SideMenuContainerContractedWidth};`}
+  display: inline-block;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  padding-top: -5px;
+  opacity: ${(props) => (props.isExpanded ? '1' : '0')};
+  & > div {
+    margin-top: -2px;
+  }
 `;

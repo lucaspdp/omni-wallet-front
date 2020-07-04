@@ -8,9 +8,15 @@ export type SideMenuItemProps = {
 
 export const Container = styled.div<SideMenuItemProps>`
   position: relative;
+  margin-bottom: 10px;
+  height: 45px;
+  line-height: 45px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
   display: grid;
-  grid-template-columns: ${(props) => (props.expanded ? '45px 1fr' : '45px')};
-  grid-template-rows: 1fr;
+  grid-template-columns: 35px 1fr;
+  grid-template-rows: 35px;
   border-radius: 4px;
   border-left: 3px solid transparent;
   border-right: 3px solid transparent;
@@ -50,10 +56,9 @@ export const MenuIcon = styled.div`
 `;
 
 export const MenuLabel = styled.div<{ expanded: boolean }>`
-  opacity: ${(props) => (props.expanded ? '1' : '0')};
+  display: ${(props) => (props.expanded ? 'block' : 'hidden')};
   grid-row: 1 / span 1;
   grid-column: 2 / span 1;
-  transition: opacity 0.2s;
   align-self: center;
   text-align: left;
   box-sizing: border-box;

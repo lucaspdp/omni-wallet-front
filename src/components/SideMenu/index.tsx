@@ -1,45 +1,59 @@
 import React, { useState, MouseEvent } from 'react';
+import AppLogo from '../../assets/logo.svg';
 import HamburguerMenuImg from '../../assets/img/icons/ham.menu.thin.svg';
-import AnalyticIcon from '../../assets/img/icons/analytics.svg';
-import BrainIcon from '../../assets/img/icons/brain.svg';
 import MenuItem from './MenuItem';
 import { ISideMenuItem } from './ISideMenuItem';
 
-import { Container } from './styles';
+import { Container, MenuBrand, BrandContainer } from './styles';
+import { SvgIconStyle } from '../../styles/global';
 
-export default function SideMenu() {
-  const menuItens: ISideMenuItem[] = [
-    {
-      _id: 'Item1',
-      label: 'item 1',
-      image: AnalyticIcon,
-    },
-    {
-      _id: 'Item2',
-      label: 'item 2',
-      image: BrainIcon,
-    },
-  ];
+type SideMenuProps = {
+  items: {
+    [itemId: string]: {
+      icon: string;
+      label: string;
+    };
+  };
+  selectedItem: string;
+  onMenuItemClick: (id: string) => void;
+};
+
+export default function SideMenu(props: SideMenuProps) {
+  let menuItens: ISideMenuItem[] = [];
+  if (props.items) {
+    for (const itemId in props.items) {
+      const item = props.items[itemId];
+      menuItens.push({ _id: itemId, ...item });
+    }
+  }
 
   const sideMenuExpansionDelay = 900;
 
-  const [selectedItem, setSelectedItem] = useState<string>('');
   const [expanded, setExpanded] = useState(false);
   const [sideMenuExpansionTimeout, setSideMenuExpansionTimeout] = useState(0);
 
   function delayedSideMenuExpansion(e: MouseEvent) {
     e.stopPropagation();
     if (sideMenuExpansionTimeout <= 0 && expanded === false) {
-      let setTimeoutId = setTimeout(() => {
-        setSideMenuExpansionTimeout(0);
-        setExpanded(true);
+      const setTimeoutId = setTimeout(() => {
+        expandSideMenu();
       }, sideMenuExpansionDelay);
 
       setSideMenuExpansionTimeout(setTimeoutId);
     }
   }
 
-  function cancelSideMenuExpansion(e: MouseEvent) {
+  function toggleSideMenuExpansion() {
+    if (expanded) cancelSideMenuExpansion();
+    else expandSideMenu();
+  }
+
+  function expandSideMenu() {
+    setSideMenuExpansionTimeout(0);
+    setExpanded(true);
+  }
+
+  function cancelSideMenuExpansion() {
     setExpanded(false);
     if (sideMenuExpansionTimeout > 0) {
       clearTimeout(sideMenuExpansionTimeout);
@@ -55,19 +69,29 @@ export default function SideMenu() {
         label={'Menu de Navegação'}
         iconSize={'60%'}
         image={HamburguerMenuImg}
+        onClickFn={toggleSideMenuExpansion}
       />
+      <MenuBrand>
+        <BrandContainer isExpanded={expanded}>
+          <SvgIconStyle source={AppLogo} size={'60%'} color={'var(--primary-color)'}></SvgIconStyle>
+        </BrandContainer>
+      </MenuBrand>
 
       {menuItens.map((item) => (
         <MenuItem
           key={item._id}
-          isSelected={selectedItem === item._id}
+          isSelected={props.selectedItem === item._id}
           isExpanded={expanded}
           label={item.label}
-          image={item.image}
-          iconSize={'90%'}
+          image={item.icon}
+          iconSize={'70%'}
           iconColor={'var(--primary-color)'}
           onClickFn={() => {
-            setSelectedItem(item._id);
+            if (sideMenuExpansionTimeout != 0) {
+              cancelSideMenuExpansion();
+            }
+
+            props.onMenuItemClick(item._id);
           }}
         ></MenuItem>
       ))}
