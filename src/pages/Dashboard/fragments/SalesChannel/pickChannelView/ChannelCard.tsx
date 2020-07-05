@@ -33,6 +33,7 @@ import TrendEqualIcon from '../../../../../assets/img/icons/trend.equal.svg';
 import MarketPerformanceResumeCard from './marketPerformanceResumeCard/MarketPerformanceResumeCard';
 import { timeIntervalBuilders } from './timeUtils/TimeUtils';
 import PaymentMethodsMarketView, { PaymentMethodsViewProps } from './paymentMethodsView/PaymentMethodsMarketView';
+import MarketRulesViewer from './marketRulesView/MarketRulesViewer';
 
 export type TimeIntervalOption = {
   value: string;
@@ -172,7 +173,7 @@ export default function ChannelCard(props: ChannelCardProps) {
     if (selectedTimeUnit?.value === 'day') {
       return `${m.hour()}:${String(m.minute()).padStart(2, '0')}`;
     } else {
-      return `${String(m.date()).padStart(2, '0')}/${String(m.month()+1).padStart(2, '0')}/${m.year()}`;
+      return `${String(m.date()).padStart(2, '0')}/${String(m.month() + 1).padStart(2, '0')}/${m.year()}`;
     }
   }
 
@@ -302,7 +303,7 @@ export default function ChannelCard(props: ChannelCardProps) {
             <ResponsiveContainer>
               <ComposedChart data={priceByDayGraphData}>
                 <XAxis tickFormatter={formatDate} type="category" angle={-30} dataKey="x" />
-                <YAxis dataKey="y" angle={-90} label="Valor recebido no período"/>
+                <YAxis dataKey="y" angle={-90} />
                 <CartesianGrid stroke="#eee" />
                 <Tooltip
                   formatter={(v, a) => [`R$ ${Number(v).toFixed(2)}`, a == 'y' ? 'Pedido' : 'Repassado']}
@@ -325,7 +326,18 @@ export default function ChannelCard(props: ChannelCardProps) {
         )}
       </MarketplaceChartDisplay>
       <MarketAndPaymentContainer>
-        <MarketRulesView></MarketRulesView>
+        <MarketRulesView>
+          <MarketRulesViewer
+            amount={amountFromCurrentPeriod ?? 0}
+            marketTax={(() => {
+              let totalTax = 100;
+              marketPlace?.splitRules.forEach((rule) => {
+                totalTax = rule(totalTax).incomeValue;
+              });
+              return 100 - totalTax;
+            })()}
+          ></MarketRulesViewer>
+        </MarketRulesView>
 
         <PaymentMethodsView>
           <PaymentMethodsMarketView paymentMethods={paymentMethodsData}></PaymentMethodsMarketView>

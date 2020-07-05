@@ -12,6 +12,14 @@ import { IPaymentMethod } from '../paymentMethods/IPaymentMethod';
 import { getRandonPaymentMethod } from '../paymentMethods/PaymentMethodsRepository';
 import { ISplitRule } from '../splitRules/ISplitRule';
 
+const generatedProducts: {
+  [marketName: string]: IProductInfo[];
+} = {};
+
+const generatedOrders: {
+  [marketName: string]: IMarketplaceOrder[];
+} = {};
+
 export class MarketplaceRepository {
   private static productGenerationRules = {
     amount: 50,
@@ -19,7 +27,7 @@ export class MarketplaceRepository {
     minPrice: 8,
   };
   private static ordersGenerationRules = {
-    amount: 150,
+    amount: 8000,
     maxPrice: 100,
     minPrice: 8,
   };
@@ -46,10 +54,8 @@ export class MarketplaceRepository {
   protected maxPostDateOfOrders: Date = moment().add(3, 'month').toDate();
 
   constructor() {
-    const productCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_PRODUCTS_CACHE_NAME);
-    const orderCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_ORDERS_CACHE_NAME);
-
-    
+    this.generatedOrders = generatedOrders;
+    this.generatedProducts = generatedProducts;
   }
 
   public async getMarketplace(name: string): Promise<IMarketplaceData> {
@@ -70,6 +76,7 @@ export class MarketplaceRepository {
   public populateMarketplace(marketplace: IMarketplaceData) {
     if (this.generatedProducts[marketplace.name] == null) {
       this.generatedProducts[marketplace.name] = this.generateProducts();
+      generatedProducts[marketplace.name] = this.generatedProducts[marketplace.name];
     }
 
     marketplace.products = this.generatedProducts[marketplace.name];
@@ -82,6 +89,7 @@ export class MarketplaceRepository {
         marketplace.orderStatus,
         marketplace.splitRules,
       );
+      generatedOrders[marketplace.name] = this.generatedOrders[marketplace.name];
     }
 
     marketplace.orders = this.generatedOrders[marketplace.name];
