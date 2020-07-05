@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
+  max-height: 100vh;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 `;
 export const DateBar = styled.div`
   display: flex;
@@ -139,14 +141,86 @@ export const Icoming = styled.div`
   }
 `;
 export const IncomingCalendar = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  background: #fff;
+  box-shadow: 0px 2px 6px #0000000A;
+  padding: 20px 30px;
 `;
 export const Top = styled.ul`
-  
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  span{
+    color: #4D4F5C;
+    font-size: 16px;
+      font-weight: 600;
+
+    &.title{
+      color: #2D2D2D;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+
+  .dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+
+  .ifood{
+    .dot{
+      background: #F5B41A;
+    }
+  }
+  .b2w{
+    .dot{
+      background: #B571F9;
+    }
+  }
+  .func{
+    .dot{
+      background: #6BBBD2;
+    }
+  }
+  .other{
+    .dot{
+      background: #FF8373;
+    }
+  }
 `;
 export const Legenda = styled.ul`
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  div{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
 `;
 export const Despesas = styled.ul`
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  div{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+`;
+export const Antecipacao = styled.img`
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
+  margin-right: 5px;
+  margin-left: 10px;
 `;

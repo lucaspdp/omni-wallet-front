@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar } from 'recharts';
 import faker from 'faker';
+import AntecipacaoSVG from '../../../../assets/antecipacao.svg';
 
 import {
   Container,
@@ -10,7 +11,8 @@ import {
   Legenda,
   Despesas,
   Top,
-  Button
+  Button,
+  Antecipacao
 } from './styles';
 import Calendar from './components/Calendar';
 
@@ -24,7 +26,23 @@ export default function IncomeTimelineFragment() {
 
   type DayGainType = {
     day : number,
-    gain : number
+    gain : number,
+    type : string,
+    nome ? : string,
+    setor ? : string,
+    qtd ? : number,
+    prazo ? : number,
+    prazoFunc ? : number;
+    formaPg ? : string,
+    aPagar ? : number,
+    qtdFunc ? : number,
+    valLiquido ? : number,
+    operadora ? : string,
+    antecipacao ? : string,
+    valBruto ? : number,
+    taxa ? : number,
+    periodo ? : string,
+    regraRepasse ? : string
   }
 
   const [date, setDate] = useState(new Date())
@@ -69,37 +87,52 @@ export default function IncomeTimelineFragment() {
         cash: faker.random.number(30000)
       }]);
     }
-    generateGains();
   }, [month])
+
+  useEffect(()=>{
+    generateGains();
+  }, [incomingMoney, availableMoney, billsMoney])
 
   function generateGains(){
     const daysInMonth = 30;
-    var daysGain : any[] = [];
+    var daysGain : DayGainType[] = [];
     var totalGain = availableMoney + incomingMoney;
     for(var i = 0; i < daysInMonth; i++){
       if(totalGain <= 0) break;
       if(Math.random() > 0.5){
         const gain = faker.random.number({min: 5000, max: 15000})
+        const typeSort = Math.random();
+        var type = "";
+        if(typeSort <= 0.25) type = "pgFornecedor";
+        else if(typeSort <= 0.5) type = "pgFuncionarios";
+        else if(typeSort <= 0.75) type = "antecipacao";
+        else type = "repasse";
+        //||
+        const simValue = faker.random.number(25000);
         if(totalGain > gain){
           daysGain.push({
             day: i+1,
-            gain
+            gain,
+            type: type,
+            nome: type === 'pgFornecedor' ? 'Swift Figorífico' : undefined,
+            setor: type === 'pgFornecedor' ? 'Carnes e Frigorificos' : undefined,
+            qtd: type === 'pgFornecedor'  ? faker.random.number(900) : undefined,
+            prazo: type === 'pgFornecedor' ? faker.random.number(60) : undefined,
+            formaPg: 'Transferência bancária',
+            aPagar: simValue,
+            prazoFunc: 5,
+            qtdFunc: type === 'pgFuncionarios'  ? faker.random.number(100) : undefined,
+            antecipacao: type === 'antecipacao' ? '01/06 a 15/06' : undefined,
+            operadora: type === 'antecipacao' ? 'Cielo Livre' : undefined,
+            valBruto: simValue / 100 * 95,
+            taxa: type === 'antecipacao' ? 6 : undefined,
+            periodo: type === 'repasse' ? '15/06 a 30/06' : undefined,
+            regraRepasse: type === 'repasse' ? '31 dias após as vendas' : undefined,
           })
           totalGain -= gain;
         }
       }
-
-      if(i === daysInMonth){
-        if(totalGain > 0){
-          daysGain.push({
-            day: i+1,
-            gain: totalGain
-          })
-          totalGain = 0;
-        }
-      }
     }
-
     setGains(daysGain);
   }
 
@@ -244,14 +277,35 @@ export default function IncomeTimelineFragment() {
       <IncomingCalendar>
         <Top>
           <Legenda>
-
+            <span className="title">Repasses:</span>
+            <div className="ifood">
+              <div className="dot"></div>
+              <span>Mkt Place: iFood</span>
+            </div>
+            <div className="b2w">
+              <div className="dot"></div>
+              <span>B2W</span>
+            </div>
+            <div className="antecipacao">
+              <Antecipacao src={AntecipacaoSVG} alt="Antecipacao" />
+              <span>Antecipacao</span>
+            </div>
           </Legenda>
           <Despesas>
-
+            <span className="title">Despesas:</span>
+            <div className="func">
+              <div className="dot"></div>
+              <span>Funcionários</span>
+            </div>
+            <div className="other">
+              <div className="dot"></div>
+              <span>Outros</span>
+            </div>
           </Despesas>
         </Top>
-        <Calendar test="TEST"/>
+        <Calendar gains={gains}/>
       </IncomingCalendar>
+     
     </Container>
   );
 }
