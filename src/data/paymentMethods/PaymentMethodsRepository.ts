@@ -1,9 +1,9 @@
 import { IPaymentMethod } from './IPaymentMethod';
-import MoneyLogo from '../../assets/img/icons/money.svg';
-import PayPalLogo from '../../assets/img/icons/money.svg';
-import PagarMeLogo from '../../assets/img/icons/money.svg';
-import VisaCardLogo from '../../assets/img/icons/money.svg';
-import MasterCardLogo from '../../assets/img/icons/money.svg';
+import MoneyLogo from '../../assets/img/paymentMethods/money.svg';
+import PayPalLogo from '../../assets/img/paymentMethods/paypal.svg';
+import PagarMeLogo from '../../assets/img/paymentMethods/pagarme.svg';
+import VisaCardLogo from '../../assets/img/paymentMethods/visa.svg';
+import MasterCardLogo from '../../assets/img/paymentMethods/mastercard.svg';
 
 export const paymentMethods: IPaymentMethod[] = [
   {
