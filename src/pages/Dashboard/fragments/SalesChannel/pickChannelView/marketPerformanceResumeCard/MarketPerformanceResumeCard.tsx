@@ -13,9 +13,9 @@ export default function MarketPerformanceResumeCard(props: ResumeCardProps) {
   return (
     <MarketResumeInformation>
       <InformationLogo color={props.color ?? 'var(--primary-color)'}>
-        <SvgIconStyle source={props.icon} size='70%' color={props.color ?? 'var(--primary-color)'}></SvgIconStyle>
+        <SvgIconStyle source={props.icon} size="70%" color={props.color ?? 'var(--primary-color)'}></SvgIconStyle>
       </InformationLogo>
-      <InformationTitle>{props.title}</InformationTitle>
+      <InformationTitle color={props.color ?? 'var(--primary-color)'}>{props.title}</InformationTitle>
       <InformationContainer>{props.value}</InformationContainer>
     </MarketResumeInformation>
   );

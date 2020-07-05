@@ -6,4 +6,5 @@ export interface IPaymentMethod {
   logo: string;
   splitRules:  ISplitRule[];
   daysToTransfer : number;
+  color: string;
 }

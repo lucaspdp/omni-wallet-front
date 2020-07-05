@@ -15,6 +15,9 @@ import {
   ChartFilterPickTimeUnit,
   MarketplacePerformanceChart,
   MarketResumeContainer,
+  MarketRulesView,
+  PaymentMethodsView,
+  MarketAndPaymentContainer,
 } from './ChannelCardStyles';
 import { FullRowCard } from '../../FragmentStyles';
 import { CurrencyFormatter, DateFormatter } from '../../../../../data/Intl';
@@ -29,6 +32,7 @@ import TrendUpIcon from '../../../../../assets/img/icons/trend.up.svg';
 import TrendEqualIcon from '../../../../../assets/img/icons/trend.equal.svg';
 import MarketPerformanceResumeCard from './marketPerformanceResumeCard/MarketPerformanceResumeCard';
 import { timeIntervalBuilders } from './timeUtils/TimeUtils';
+import PaymentMethodsMarketView, { PaymentMethodsViewProps } from './paymentMethodsView/PaymentMethodsMarketView';
 
 export type TimeIntervalOption = {
   value: string;
@@ -44,6 +48,13 @@ export type ChannelCardProps = {
 export default function ChannelCard(props: ChannelCardProps) {
   const [marketPlace, setMarketPlace] = useState<IMarketplaceData | undefined>(undefined);
   const [utilities, setUtilities] = useState<MarketplaceUtilities | undefined>();
+  const [paymentMethodsData, setPaymentMethodsData] = useState<{
+    [name: string]: {
+      name: string;
+      quantity: number;
+      totalAmount: number;
+    };
+  }>({});
   const [timeUnits] = useState([
     {
       value: 'day',
@@ -67,7 +78,7 @@ export default function ChannelCard(props: ChannelCardProps) {
   const [timeIntervals, setTimeIntervals] = useState<TimeIntervalOption[] | undefined>();
   const [selectedTimeInterval, setSelectedTimeInterval] = useState<TimeIntervalOption | undefined>();
 
-  const [graphData, setGraphData] = useState<any[]>([]);
+  const [priceByDayGraphData, setPriceByDayGraphData] = useState<any[]>([]);
 
   useEffect(() => {
     let intervals = timeIntervalBuilders[selectedTimeUnit?.value ?? 'month']();
@@ -77,7 +88,7 @@ export default function ChannelCard(props: ChannelCardProps) {
   }, [selectedTimeUnit]);
 
   useEffect(() => {
-    let data = utilities?.getTotalPriceByDay() ?? {};
+    let priceByDay = utilities?.getTotalPriceByDay() ?? {};
 
     const lineData: {
       x: number;
@@ -85,19 +96,21 @@ export default function ChannelCard(props: ChannelCardProps) {
       split: number;
     }[] = [];
 
-    for (let day in data) {
+    for (let day in priceByDay) {
       lineData.push({
-        y: data[day].price,
-        x: data[day].date.toDate().getTime(),
-        split: data[day].splitPrice,
+        y: priceByDay[day].price,
+        x: priceByDay[day].date.toDate().getTime(),
+        split: priceByDay[day].splitPrice,
       });
     }
-    setGraphData(lineData);
+    setPriceByDayGraphData(lineData);
+
+    let priceByPaymentMethods = utilities?.getPricesByPaymentMethods() ?? {};
+    setPaymentMethodsData(priceByPaymentMethods);
   }, [utilities]);
 
   useEffect(() => {
     if (utilities == null || selectedTimeInterval == null) return;
-    console.log('Use Effect working!');
 
     let data =
       utilities?.getTotalPriceByDay({
@@ -118,7 +131,14 @@ export default function ChannelCard(props: ChannelCardProps) {
         split: data[day].splitPrice,
       });
     }
-    setGraphData(lineData);
+    setPriceByDayGraphData(lineData);
+
+    let priceByPaymentMethods =
+      utilities?.getPricesByPaymentMethods({
+        start: selectedTimeInterval?.start,
+        end: selectedTimeInterval?.end,
+      }) ?? {};
+    setPaymentMethodsData(priceByPaymentMethods);
   }, [selectedTimeInterval]);
 
   useEffect(() => {
@@ -149,13 +169,17 @@ export default function ChannelCard(props: ChannelCardProps) {
       d.setTime(date);
     }
     let m = moment(d);
-    return `${m.date()}/${String(m.month() + 1).padStart(2, '0')}/${m.year()}`;
+    if (selectedTimeUnit?.value === 'day') {
+      return `${m.hour()}:${String(m.minute()).padStart(2, '0')}`;
+    } else {
+      return `${String(m.date()).padStart(2, '0')}/${String(m.month()+1).padStart(2, '0')}/${m.year()}`;
+    }
   }
 
   let amountFromPreviousPeriod = 0;
   let amountFromCurrentPeriod = 0;
   let trendPercentage = 0;
-  let amountOfOrders = graphData.length;
+  let amountOfOrders = priceByDayGraphData.length;
   let mediumTicket = 0;
 
   if (selectedTimeInterval != null && utilities != null) {
@@ -173,12 +197,11 @@ export default function ChannelCard(props: ChannelCardProps) {
       amountFromPreviousPeriod += dataFromPeriod[dayId].price;
     }
 
-    graphData?.forEach((data) => {
+    priceByDayGraphData?.forEach((data) => {
       amountFromCurrentPeriod += data.y;
     });
 
-    if(amountFromCurrentPeriod != 0)
-      mediumTicket = amountFromCurrentPeriod / amountOfOrders;
+    if (amountFromCurrentPeriod != 0) mediumTicket = amountFromCurrentPeriod / amountOfOrders;
 
     if (amountFromCurrentPeriod == 0 || amountFromPreviousPeriod == 0) trendPercentage = 1;
     else trendPercentage = amountFromCurrentPeriod / amountFromPreviousPeriod;
@@ -194,12 +217,12 @@ export default function ChannelCard(props: ChannelCardProps) {
         <MarketplaceInfoColumn>
           <MarketplaceInfoRow>
             <Label>Receita total (bruta): </Label>
-            <Info> {`R$ ${CurrencyFormatter.format(utilities?.getReceitaBruta() ?? 0)}`}</Info>
+            <Info> {`${CurrencyFormatter.format(utilities?.getReceitaBruta() ?? 0)}`}</Info>
           </MarketplaceInfoRow>
 
           <MarketplaceInfoRow>
             <Label>Receita total (líquida): </Label>
-            <Info> {`R$ ${CurrencyFormatter.format(utilities?.getReceitaLiquida() ?? 0)}`}</Info>
+            <Info> {`${CurrencyFormatter.format(utilities?.getReceitaLiquida() ?? 0)}`}</Info>
           </MarketplaceInfoRow>
         </MarketplaceInfoColumn>
 
@@ -234,10 +257,10 @@ export default function ChannelCard(props: ChannelCardProps) {
             icon={MoneyBagIcon}
             value={(() => {
               let amount = 0;
-              graphData?.forEach((data) => {
+              priceByDayGraphData?.forEach((data) => {
                 amount += data.y;
               });
-              return `R$ ${String(amount.toFixed(2))}`;
+              return `${CurrencyFormatter.format(amount)}`;
             })()}
           ></MarketPerformanceResumeCard>
 
@@ -246,17 +269,17 @@ export default function ChannelCard(props: ChannelCardProps) {
             icon={ShopCartIcon}
             value={(() => {
               let amount = 0;
-              graphData?.forEach((data) => {
+              priceByDayGraphData?.forEach((data) => {
                 amount += data.split;
               });
-              return `R$ ${String(amount.toFixed(2))}`;
+              return `${CurrencyFormatter.format(amount)}`;
             })()}
           ></MarketPerformanceResumeCard>
 
           <MarketPerformanceResumeCard
             title="Desempenho"
             icon={trendPercentage == 1 ? TrendEqualIcon : trendPercentage > 1 ? TrendUpIcon : TrendDownIcon}
-            color={trendPercentage == 1 ? 'blue' : trendPercentage > 1 ? 'green' : 'red'}
+            color={trendPercentage == 1 ? '#6bbbd2' : trendPercentage > 1 ? '#34be9f' : '#d94343'}
             value={(() => {
               return `${(Math.abs(1 - trendPercentage) * 100).toFixed(2)}%`;
             })()}
@@ -277,18 +300,23 @@ export default function ChannelCard(props: ChannelCardProps) {
         {marketPlace !== undefined && utilities !== undefined ? (
           <MarketplacePerformanceChart>
             <ResponsiveContainer>
-              <ComposedChart data={graphData}>
-                <XAxis tickFormatter={formatDate} type="category" dataKey="x" />
-                <YAxis dataKey="y" />
-                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+              <ComposedChart data={priceByDayGraphData}>
+                <XAxis tickFormatter={formatDate} type="category" angle={-30} dataKey="x" />
+                <YAxis dataKey="y" angle={-90} label="Valor recebido no período"/>
+                <CartesianGrid stroke="#eee" />
                 <Tooltip
                   formatter={(v, a) => [`R$ ${Number(v).toFixed(2)}`, a == 'y' ? 'Pedido' : 'Repassado']}
                   labelFormatter={(value) => {
                     return 'Acumulado do dia';
                   }}
                 />
-                <Area type="linear" fill="var(--primary-color-25)" stroke="var(--primary-color)" dataKey="y"></Area>
-                <Area type="linear" fill="var(--primary-color-50)" stroke="var(--primary-color)" dataKey="split"></Area>
+                <Area type="monotone" fill="var(--primary-color-10)" stroke="var(--primary-color)" dataKey="y"></Area>
+                <Area
+                  type="monotone"
+                  fill="var(--primary-color-15)"
+                  stroke="var(--primary-color)"
+                  dataKey="split"
+                ></Area>
               </ComposedChart>
             </ResponsiveContainer>
           </MarketplacePerformanceChart>
@@ -296,6 +324,13 @@ export default function ChannelCard(props: ChannelCardProps) {
           ''
         )}
       </MarketplaceChartDisplay>
+      <MarketAndPaymentContainer>
+        <MarketRulesView></MarketRulesView>
+
+        <PaymentMethodsView>
+          <PaymentMethodsMarketView paymentMethods={paymentMethodsData}></PaymentMethodsMarketView>
+        </PaymentMethodsView>
+      </MarketAndPaymentContainer>
     </FullRowCard>
   );
 }

@@ -72,10 +72,9 @@ export const ChartFilterPickTimeInterval = styled.div``;
 
 export const MarketplacePerformanceChart = styled.div`
   width: 100%;
-  padding: 0 20px;
-  margin-left: 20px 0;
+  margin-left: -20px ;
   position: relative;
-  height: 300px;
+  height: 350px;
 `;
 
 export const MarketResumeContainer = styled.div`
@@ -84,4 +83,20 @@ export const MarketResumeContainer = styled.div`
   height: 70px;
   display: flex;
   margin: 10px 0;
+`;
+
+export const MarketAndPaymentContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows: auto;
+`;
+
+export const MarketRulesView = styled.div`
+  grid-column: 1 / span 1;
+`;
+
+export const PaymentMethodsView = styled.div`
+  grid-column: 2 / span 1;
 `;

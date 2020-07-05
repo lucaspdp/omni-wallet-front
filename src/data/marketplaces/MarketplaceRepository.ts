@@ -19,7 +19,7 @@ export class MarketplaceRepository {
     minPrice: 8,
   };
   private static ordersGenerationRules = {
-    amount: 500,
+    amount: 10000,
     maxPrice: 100,
     minPrice: 8,
   };
@@ -49,13 +49,7 @@ export class MarketplaceRepository {
     const productCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_PRODUCTS_CACHE_NAME);
     const orderCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_ORDERS_CACHE_NAME);
 
-    if (productCacheStr != null && productCacheStr != '') {
-      //this.generatedProducts = JSON.parse(productCacheStr);
-    }
-
-    if (orderCacheStr != null && orderCacheStr != '') {
-      //this.generatedOrders = JSON.parse(orderCacheStr);
-    }
+    
   }
 
   public async getMarketplace(name: string): Promise<IMarketplaceData> {
@@ -76,7 +70,6 @@ export class MarketplaceRepository {
   public populateMarketplace(marketplace: IMarketplaceData) {
     if (this.generatedProducts[marketplace.name] == null) {
       this.generatedProducts[marketplace.name] = this.generateProducts();
-      this.cacheProducts();
     }
 
     marketplace.products = this.generatedProducts[marketplace.name];
@@ -89,7 +82,6 @@ export class MarketplaceRepository {
         marketplace.orderStatus,
         marketplace.splitRules,
       );
-      this.cacheOrders();
     }
 
     marketplace.orders = this.generatedOrders[marketplace.name];
@@ -112,7 +104,9 @@ export class MarketplaceRepository {
         afterSplitAmount = splitRule(afterSplitAmount).incomeValue;
       }
 
-      const orderDate = Faker.date.between(this.maxAgeOfOrders, this.maxPostDateOfOrders);
+      let orderDate: Date;
+
+      orderDate = Faker.date.between(this.maxAgeOfOrders, this.maxPostDateOfOrders);
 
       orders.push({
         status: Math.random() > 0.7 ? status[this.getRandomInt(0, status.length - 1)] : 'PAID',
@@ -149,10 +143,10 @@ export class MarketplaceRepository {
     const itens: IProductOrderItem[] = [];
     const config = MarketplaceRepository.productItemGenerationRules;
     const amount = this.getRandomInt(config.minQuantity, config.maxQuantity);
-    
+
     for (let a = 0; a < amount; a++) {
       let prod = fromProducts[this.getRandomInt(0, fromProducts.length - 1)];
-      let sellValue = prod.price + this.getRandomInt(-(config.maxDiscount), config.maxTax);
+      let sellValue = prod.price + this.getRandomInt(-config.maxDiscount, config.maxTax);
       let quantity = this.getRandomInt(1, 4);
 
       itens.push({
@@ -164,14 +158,6 @@ export class MarketplaceRepository {
       });
     }
     return itens;
-  }
-
-  protected cacheProducts() {
-    localStorage.setItem(MarketplaceRepository.LOCAL_PRODUCTS_CACHE_NAME, JSON.stringify(this.generatedProducts));
-  }
-
-  protected cacheOrders() {
-    localStorage.setItem(MarketplaceRepository.LOCAL_ORDERS_CACHE_NAME, JSON.stringify(this.generatedOrders));
   }
 
   public generateProducts(): IProductInfo[] {

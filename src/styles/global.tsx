@@ -55,6 +55,8 @@ export default createGlobalStyle`
     --primary-color-75: #2DBC9CAA;
     --primary-color-50: #2DBC9C88;
     --primary-color-25: #2DBC9C44;
+    --primary-color-15: #2DBC9C22;
+    --primary-color-10: #2DBC9C11;
     
     --secondary-color: #D94343; 
     --font-primary: #43425D;

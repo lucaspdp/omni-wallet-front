@@ -84,6 +84,44 @@ export class MarketplaceUtilities {
     return priceByDay;
   }
 
+  public getPricesByPaymentMethods(range?: { start: Date; end: Date }) {
+    const priceByPayment: {
+      [name: string]: {
+        name: string;
+        quantity: number;
+        totalAmount: number;
+      };
+    } = {};
+
+    this._orders.forEach((order) => {
+      const methodName = order.payment.method.name;
+
+      let d: moment.Moment;
+      if (typeof order.order_date === 'string') {
+        d = moment((order.order_date as string).slice(0, -1), 'YYYY-MM-DDTHH:mm:ssS');
+      } else {
+        d = moment(order.order_date as Date);
+      }
+      // Skip out of range values
+      if (range != null) {
+        if (d.isBefore(range.start) || d.isAfter(range.end)) return;
+      }
+
+      if (priceByPayment[methodName] == null) {
+        priceByPayment[methodName] = {
+          name: methodName,
+          quantity: 1,
+          totalAmount: order.total_price,
+        };
+      } else {
+        priceByPayment[methodName].quantity++;
+        priceByPayment[methodName].totalAmount += order.total_price;
+      }
+    });
+
+    return priceByPayment;
+  }
+
   public getMostSelledProduct(): IProductInfo {
     let topProduct!: IProductInfo;
     let topProductAmount: number = 0;

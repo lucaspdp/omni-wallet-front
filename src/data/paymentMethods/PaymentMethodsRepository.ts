@@ -5,12 +5,13 @@ import PagarMeLogo from '../../assets/img/icons/money.svg';
 import VisaCardLogo from '../../assets/img/icons/money.svg';
 import MasterCardLogo from '../../assets/img/icons/money.svg';
 
-export class PaymentMethodsRepository {}
-const paymentMethods: IPaymentMethod[] = [
+export const paymentMethods: IPaymentMethod[] = [
   {
     name: 'MONEY',
     title: 'Dinheiro',
     logo: MoneyLogo,
+    color: '#ffda83',
+
     daysToTransfer : 0,
     splitRules: [
       (order) => ({
@@ -26,6 +27,7 @@ const paymentMethods: IPaymentMethod[] = [
     title: 'PayPal',
     logo: PayPalLogo,
     daysToTransfer : 7,
+    color: '#f71963',
     splitRules: [
       (price) => {
         const tax = 2.3;
@@ -42,6 +44,7 @@ const paymentMethods: IPaymentMethod[] = [
     name: 'PAGARME',
     title: 'PagarMe',
     logo: PagarMeLogo,
+    color: '#a3a0fb',
     daysToTransfer : 10,
     splitRules: [
       (price) => {
@@ -58,6 +61,7 @@ const paymentMethods: IPaymentMethod[] = [
   {
     name: 'CARD_VISA',
     title: 'Visa',
+    color: '#00d0fb',
     logo: VisaCardLogo,
     daysToTransfer : 30,
     splitRules: [
@@ -75,6 +79,7 @@ const paymentMethods: IPaymentMethod[] = [
   {
     name: 'CARD_MASTER',
     title: 'MasterCard',
+    color: '#f581ed',
     logo: MasterCardLogo,
     daysToTransfer : 60,
     splitRules: [

@@ -11,14 +11,14 @@ export const MarketResumeInformation = styled.div`
   margin-right: 20px;
 `;
 
-export const InformationLogo = styled.div<{color: string;}>`
+export const InformationLogo = styled.div<{ color: string }>`
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
   position: relative;
   width: auto;
   height: auto;
   display: block;
-  border: 1px solid ${props => props.color};
+  border: 1px solid ${(props) => props.color};
   border-radius: 50%;
   height: 60%;
   width: 60%;
@@ -26,7 +26,7 @@ export const InformationLogo = styled.div<{color: string;}>`
   justify-self: center;
 `;
 
-export const InformationTitle = styled.div`
+export const InformationTitle = styled.div<{ color: string }>`
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
   color: #505050;
@@ -34,6 +34,7 @@ export const InformationTitle = styled.div`
   align-self: end;
   font-weight: bold;
   font-size: 11pt;
+  color: ${(props) => props.color};
 `;
 export const InformationContainer = styled.div`
   grid-column: 2 / span 1;
