@@ -14,6 +14,8 @@ import ChannelSelector from './channelSelector/ChannelSelector';
 
 export default function SalesChannelFragment() {
   const [selectedView, setSelectedView] = useState('SingleChannel');
+  const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
+
   const views: any = {
     AllChannels: {
       label: 'Todos os canais',
@@ -21,7 +23,7 @@ export default function SalesChannelFragment() {
     },
     SingleChannel: {
       label: 'Por canal',
-      channelVisualization: <PickChannelVisualization />,
+      channelVisualization: <PickChannelVisualization selectedChannels={selectedChannels} />,
     },
   };
   return (
@@ -39,7 +41,7 @@ export default function SalesChannelFragment() {
           ></HorizontalMenu>
         </FragmentViewSelector>
         <FragmentChannelSelector>
-          <ChannelSelector></ChannelSelector>
+          <ChannelSelector onChange={(values) => setSelectedChannels(values)}></ChannelSelector>
         </FragmentChannelSelector>
       </FragmentHeader>
       <ChannelVisualization>

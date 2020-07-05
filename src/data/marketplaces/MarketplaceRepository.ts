@@ -1,6 +1,7 @@
 import { IMarketplaceData, IMarketplaceOrder } from '../DataMock';
 import Faker from 'faker';
 import { nanoid } from 'nanoid';
+import moment from 'moment';
 import { IProductInfo } from '../product/IProductInfo';
 import IFoodLogo from '../../assets/img/marketplaces/ifood-logo.svg';
 import B2WLogo from '../../assets/img/marketplaces/b2w-logo.svg';
@@ -18,8 +19,8 @@ export class MarketplaceRepository {
     minPrice: 30,
   };
   private static ordersGenerationRules = {
-    amount: 50,
-    maxPrice: 300,
+    amount: 500,
+    maxPrice: 200,
     minPrice: 8,
   };
   private static LOCAL_PRODUCTS_CACHE_NAME = 'GEN_PRODUCTS';
@@ -34,21 +35,19 @@ export class MarketplaceRepository {
     [marketName: string]: IMarketplaceOrder[];
   } = {};
 
+  protected maxAgeOfOrders: Date = moment().subtract(15, 'month').toDate();
+  protected maxPostDateOfOrders: Date = moment().add(3, 'month').toDate();
+
   constructor() {
     const productCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_PRODUCTS_CACHE_NAME);
     const orderCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_ORDERS_CACHE_NAME);
 
     if (productCacheStr != null && productCacheStr != '') {
-      this.generatedProducts = JSON.parse(productCacheStr);
+      //this.generatedProducts = JSON.parse(productCacheStr);
     }
 
     if (orderCacheStr != null && orderCacheStr != '') {
-      this.generatedOrders = JSON.parse(orderCacheStr);
-      for(let market in this.generatedOrders) {
-        this.generatedOrders[market].forEach((ord) => {
-          console.log('Rescued date as ', ord.order_date);
-        });
-      }
+      //this.generatedOrders = JSON.parse(orderCacheStr);
     }
   }
 
@@ -106,13 +105,14 @@ export class MarketplaceRepository {
         afterSplitAmount = splitRule(afterSplitAmount).incomeValue;
       }
 
-      const orderDate = Faker.date.recent(180);
+      const orderDate = Faker.date.between(this.maxAgeOfOrders, this.maxPostDateOfOrders);
+      
       orders.push({
         status: Math.random() > 0.7 ? status[this.getRandomInt(0, status.length - 1)] : 'PAID',
         order_date: orderDate,
         productItens: itens,
         total_price: totalPrice,
-        amount_after_split : afterSplitAmount,
+        amount_after_split: afterSplitAmount,
         payment: this.generatePayment(totalPrice, orderDate),
       });
     }

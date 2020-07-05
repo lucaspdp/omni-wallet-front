@@ -1934,13 +1934,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-vis@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@types/react-vis/-/react-vis-1.11.1.tgz#6e94bdd010a77eba1fc37bdfe8ab58a4bcdb06c9"
-  integrity sha512-AArOG1Qb4nnh1/mjN5alSHe9AtL8EU/7dLefvCD2csREyeqN8Y0eXzQK1h67zYoU3AXXBCoGSXOTU+SYvxNOCQ==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*", "@types/react@^16.9.41":
   version "16.9.41"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.41.tgz#925137ee4d2ff406a0ecf29e8e9237390844002e"
@@ -10975,7 +10968,7 @@ react-input-autosize@^2.2.2:
   dependencies:
     prop-types "^15.5.8"
 
-react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
+react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==

@@ -72,8 +72,16 @@ export const ChartFilterPickTimeInterval = styled.div``;
 
 export const MarketplacePerformanceChart = styled.div`
   width: 100%;
+  padding: 0 20px;
+  margin-left: 20px 0;
   position: relative;
-  height: 500px;
-  margin: 10px 0px;
+  height: 300px;
 `;
 
+export const MarketResumeContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  margin: 10px 0;
+`;

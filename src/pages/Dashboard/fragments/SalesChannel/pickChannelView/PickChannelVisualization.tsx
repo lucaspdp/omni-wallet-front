@@ -1,21 +1,38 @@
-import React from 'react';
-import iFoodLogo from '../../../../../assets/img/marketplaces/ifood-logo.svg';
-import {
-  Container
-} from './PickChannelStyles';
+import React, { useState } from 'react';
+import { Container } from './PickChannelStyles';
 import { FullRowCard } from '../../FragmentStyles';
 import IFoodChannelCard from './marketplaces/iFoodChannelCard';
+import B2WMarketplace from './marketplaces/B2WMarketplace';
 
-export default function PickChannelVisualization() {
+export type PickChannelProps = {
+  selectedChannels?: string[];
+};
+
+export default function PickChannelVisualization(props: PickChannelProps) {
+  const [marketplaces, setMarketplaces] = useState([
+    {
+      name: 'iFood',
+      channelView: <IFoodChannelCard></IFoodChannelCard>,
+    },
+    {
+      name: 'b2w',
+      channelView: <B2WMarketplace></B2WMarketplace>,
+    },
+  ]);
+
   return (
     <Container>
-      <FullRowCard>
-        <IFoodChannelCard></IFoodChannelCard>
-      </FullRowCard>
-      <FullRowCard>Channel 2</FullRowCard>
-      <FullRowCard>Channel 3</FullRowCard>
-      <FullRowCard>Channel 4</FullRowCard>
-      <FullRowCard>Channel 5</FullRowCard>
+      {marketplaces.map((market) => {
+        if (props.selectedChannels == null) return '';
+
+        if (props.selectedChannels.length != 0 && props.selectedChannels.includes(market.name)) {
+          return <FullRowCard>{market.channelView}</FullRowCard>;
+        }
+
+        if (props.selectedChannels.length == 0) return <FullRowCard>{market.channelView}</FullRowCard>;
+
+        return '';
+      })}
     </Container>
   );
 }

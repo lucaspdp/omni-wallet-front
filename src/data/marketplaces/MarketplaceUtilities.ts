@@ -39,7 +39,6 @@ export class MarketplaceUtilities {
   }
 
   public getTotalPriceByDay(range?: { start: Date; end: Date }) {
-
     const priceByDay: {
       [dayStr: string]: {
         price: number;
@@ -51,11 +50,6 @@ export class MarketplaceUtilities {
     let sortedOrders = this._orders.sort((a, b) => (a.order_date > b.order_date ? 1 : -1));
 
     sortedOrders.forEach((order) => {
-      // Skip out of range values
-      if (range != null) {
-        if (order.order_date < range.start || order.order_date > range.end) return;
-      }
-
       let d: moment.Moment;
 
       if (typeof order.order_date === 'string') {
@@ -63,9 +57,19 @@ export class MarketplaceUtilities {
       } else {
         d = moment(order.order_date as Date);
       }
+      // Skip out of range values
+      if (range != null) {
+        if (d.isBefore(range.start) || d.isAfter(range.end)) return;
+      }
 
       let dFormat = d.format('YYYY-MM-DD');
       if (priceByDay[dFormat] == null) {
+        let splitPrice = order.amount_after_split;
+
+        order.payment.method.splitRules.forEach((rule) => {
+          splitPrice = rule(splitPrice).incomeValue;
+        });
+
         priceByDay[dFormat] = {
           date: d,
           price: order.total_price,
