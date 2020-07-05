@@ -62,4 +62,13 @@ export const FragmentChannelSelector = styled(FullRowCard)`
   height: 50px;
   padding: 5px 20px;
   overflow: visible;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+`;
+
+export const ChannelSelectorTitle = styled.div`
+  grid-column: 1 / span 1;
+  font-weight: bold;
+  align-self: center;
+  font-size: 12pt;
 `;

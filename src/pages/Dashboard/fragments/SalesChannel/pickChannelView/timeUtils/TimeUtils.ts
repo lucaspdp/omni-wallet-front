@@ -57,18 +57,21 @@ export const timeIntervalBuilders: any = {
     let now = moment();
 
     for (let a = 0; a < 24; a++) {
-      let multiplier = 12;
+      let multiplier = 24;
       let start = moment().subtract(3, 'day');
 
       let mon = start.add(a * multiplier, 'hours');
+      let startInt = mon.set('hour', a).toDate();
+      let endInt = mon.set('hour', a + multiplier).toDate();
 
       let prop = {
         value: mon.toISOString(),
-        label: `${String(a).padStart(2, '0')}:00 - ${String(a + multiplier).padStart(2, '0')}:00 do dia ${mon.get(
-          'date',
-        )}`,
-        start: mon.set('hour', a).toDate(),
-        end: mon.set('hour', a + multiplier).toDate(),
+        label: `${String(startInt.getHours()).padStart(2, '0')}:00 às ${String(endInt.getHours()).padStart(
+          2,
+          '0',
+        )}:00 do dia ${String(endInt.getDate()).padStart(2, '0')}`,
+        start: startInt,
+        end: endInt,
       };
 
       if (now.isBetween(prop.start, prop.end)) {

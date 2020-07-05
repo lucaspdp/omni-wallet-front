@@ -15,13 +15,20 @@ import { ISplitRule } from '../splitRules/ISplitRule';
 export class MarketplaceRepository {
   private static productGenerationRules = {
     amount: 50,
-    maxPrice: 120,
-    minPrice: 30,
+    maxPrice: 30,
+    minPrice: 8,
   };
   private static ordersGenerationRules = {
     amount: 500,
-    maxPrice: 200,
+    maxPrice: 100,
     minPrice: 8,
+  };
+
+  private static productItemGenerationRules = {
+    maxQuantity: 4,
+    minQuantity: 1,
+    maxDiscount: 5,
+    maxTax: 8,
   };
   private static LOCAL_PRODUCTS_CACHE_NAME = 'GEN_PRODUCTS';
 
@@ -106,7 +113,7 @@ export class MarketplaceRepository {
       }
 
       const orderDate = Faker.date.between(this.maxAgeOfOrders, this.maxPostDateOfOrders);
-      
+
       orders.push({
         status: Math.random() > 0.7 ? status[this.getRandomInt(0, status.length - 1)] : 'PAID',
         order_date: orderDate,
@@ -140,12 +147,13 @@ export class MarketplaceRepository {
 
   public generateProductItens(fromProducts: IProductInfo[]): IProductOrderItem[] {
     const itens: IProductOrderItem[] = [];
-    const amount = this.getRandomInt(3, 9);
-
+    const config = MarketplaceRepository.productItemGenerationRules;
+    const amount = this.getRandomInt(config.minQuantity, config.maxQuantity);
+    
     for (let a = 0; a < amount; a++) {
       let prod = fromProducts[this.getRandomInt(0, fromProducts.length - 1)];
-      let sellValue = prod.price + this.getRandomInt(-5, 2);
-      let quantity = this.getRandomInt(1, 7);
+      let sellValue = prod.price + this.getRandomInt(-(config.maxDiscount), config.maxTax);
+      let quantity = this.getRandomInt(1, 4);
 
       itens.push({
         product: prod,

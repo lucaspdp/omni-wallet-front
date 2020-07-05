@@ -47,22 +47,22 @@ export default function ChannelCard(props: ChannelCardProps) {
   const [timeUnits] = useState([
     {
       value: 'day',
-      label: 'Dia',
+      label: 'Diário',
     },
     {
       value: 'week',
-      label: 'Semana',
+      label: 'Semanais',
     },
     {
       value: 'month',
-      label: 'Mensal',
+      label: 'Mensais',
     },
     {
       value: 'year',
-      label: 'Ano',
+      label: 'Anuais',
     },
   ]);
-  const [selectedTimeUnit, setSelectedTimeUnit] = useState<{ value: string; label: string } | undefined>(timeUnits[2]);
+  const [selectedTimeUnit, setSelectedTimeUnit] = useState<{ value: string; label: string } | undefined>(timeUnits[3]);
 
   const [timeIntervals, setTimeIntervals] = useState<TimeIntervalOption[] | undefined>();
   const [selectedTimeInterval, setSelectedTimeInterval] = useState<TimeIntervalOption | undefined>();
@@ -155,6 +155,8 @@ export default function ChannelCard(props: ChannelCardProps) {
   let amountFromPreviousPeriod = 0;
   let amountFromCurrentPeriod = 0;
   let trendPercentage = 0;
+  let amountOfOrders = graphData.length;
+  let mediumTicket = 0;
 
   if (selectedTimeInterval != null && utilities != null) {
     let newStart = moment(selectedTimeInterval.start)
@@ -174,6 +176,9 @@ export default function ChannelCard(props: ChannelCardProps) {
     graphData?.forEach((data) => {
       amountFromCurrentPeriod += data.y;
     });
+
+    if(amountFromCurrentPeriod != 0)
+      mediumTicket = amountFromCurrentPeriod / amountOfOrders;
 
     if (amountFromCurrentPeriod == 0 || amountFromPreviousPeriod == 0) trendPercentage = 1;
     else trendPercentage = amountFromCurrentPeriod / amountFromPreviousPeriod;
@@ -211,7 +216,7 @@ export default function ChannelCard(props: ChannelCardProps) {
       </MarketplaceInfoGrid>
       <MarketplaceChartDisplay>
         <ChartFilters>
-          <ChartFiltersTitle>Mostrando:</ChartFiltersTitle>
+          <ChartFiltersTitle>Mostrar em intervalos:</ChartFiltersTitle>
           <ChartFilterPickTimeUnit>
             <Select value={selectedTimeUnit} options={timeUnits} onChange={timeUnitChanged}></Select>
           </ChartFilterPickTimeUnit>
@@ -255,6 +260,18 @@ export default function ChannelCard(props: ChannelCardProps) {
             value={(() => {
               return `${(Math.abs(1 - trendPercentage) * 100).toFixed(2)}%`;
             })()}
+          ></MarketPerformanceResumeCard>
+
+          <MarketPerformanceResumeCard
+            title="Pedidos feitos"
+            icon={ShopCartIcon}
+            value={amountOfOrders.toFixed(0)}
+          ></MarketPerformanceResumeCard>
+
+          <MarketPerformanceResumeCard
+            title="Ticket Médio"
+            icon={ShopCartIcon}
+            value={`R$ ${mediumTicket.toFixed(2)}`}
           ></MarketPerformanceResumeCard>
         </MarketResumeContainer>
         {marketPlace !== undefined && utilities !== undefined ? (

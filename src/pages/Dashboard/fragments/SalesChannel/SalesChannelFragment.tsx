@@ -6,6 +6,7 @@ import {
   FragmentChannelSelector,
   FragmentHeader,
   FragmentViewSelectorTitle,
+  ChannelSelectorTitle
 } from './SalesChannelStyles';
 import HorizontalMenu from '../../../../components/HorizontalMenu/HorizontalMenu';
 import AllChannelsVisualization from './allChannelsView/AllChannelsVisualization';
@@ -41,6 +42,7 @@ export default function SalesChannelFragment() {
           ></HorizontalMenu>
         </FragmentViewSelector>
         <FragmentChannelSelector>
+          <ChannelSelectorTitle>Canais cadastrados (3) : </ChannelSelectorTitle>
           <ChannelSelector onChange={(values) => setSelectedChannels(values)}></ChannelSelector>
         </FragmentChannelSelector>
       </FragmentHeader>
