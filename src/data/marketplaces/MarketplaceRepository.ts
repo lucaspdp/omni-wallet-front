@@ -9,6 +9,7 @@ import { IProductOrderItem } from '../productOrderItem/IProductOrderItem';
 import { IPayment } from '../paymentMethods/IPayment';
 import { IPaymentMethod } from '../paymentMethods/IPaymentMethod';
 import { getRandonPaymentMethod } from '../paymentMethods/PaymentMethodsRepository';
+import { ISplitRule } from '../splitRules/ISplitRule';
 
 export class MarketplaceRepository {
   private static productGenerationRules = {
@@ -43,12 +44,16 @@ export class MarketplaceRepository {
 
     if (orderCacheStr != null && orderCacheStr != '') {
       this.generatedOrders = JSON.parse(orderCacheStr);
+      for(let market in this.generatedOrders) {
+        this.generatedOrders[market].forEach((ord) => {
+          console.log('Rescued date as ', ord.order_date);
+        });
+      }
     }
   }
 
   public async getMarketplace(name: string): Promise<IMarketplaceData> {
     const marketPromise = new Promise<IMarketplaceData>((resolve, reject) => {
-
       // --> Server logic here
 
       if (Marketplaces[name] != null) {
@@ -73,29 +78,41 @@ export class MarketplaceRepository {
     const products = this.generatedProducts[marketplace.name]!;
 
     if (this.generatedOrders[marketplace.name] == null) {
-      this.generatedOrders[marketplace.name] = this.generateOrders(products, marketplace.orderStatus);
+      this.generatedOrders[marketplace.name] = this.generateOrders(
+        products,
+        marketplace.orderStatus,
+        marketplace.splitRules,
+      );
       this.cacheOrders();
     }
 
     marketplace.orders = this.generatedOrders[marketplace.name];
   }
 
-  public generateOrders(fromProducts: IProductInfo[], status: string[]): IMarketplaceOrder[] {
+  public generateOrders(fromProducts: IProductInfo[], status: string[], splitRules: ISplitRule[]): IMarketplaceOrder[] {
     const orders: IMarketplaceOrder[] = [];
     const config = MarketplaceRepository.ordersGenerationRules;
 
     for (let a = 0; a < config.amount; a++) {
       let itens = this.generateProductItens(fromProducts);
+
       const totalPrice = itens.reduce((v, v2) => {
         v2.total_value += v.total_value;
         return v2;
       }).total_value;
+
+      let afterSplitAmount = totalPrice;
+      for (let splitRule of splitRules) {
+        afterSplitAmount = splitRule(afterSplitAmount).incomeValue;
+      }
+
       const orderDate = Faker.date.recent(180);
       orders.push({
         status: Math.random() > 0.7 ? status[this.getRandomInt(0, status.length - 1)] : 'PAID',
         order_date: orderDate,
         productItens: itens,
         total_price: totalPrice,
+        amount_after_split : afterSplitAmount,
         payment: this.generatePayment(totalPrice, orderDate),
       });
     }

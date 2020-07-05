@@ -1,28 +1,5 @@
 import React, { useState, useEffect } from 'react';
-/*import {
-  LineChart,
-  YAxis,
-  XAxis,
-  Line,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  Legend,
-  Label as AxisLabel,
-} from 'recharts';
-<ResponsiveContainer width="100%">
-            <LineChart width={600} height={400} data={DataMock.iFood.orders}>
-              <Line type="monotone" dataKey="total_price" stroke="#8884d8" />
-              <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-              <XAxis dataKey="order_date" type="number" tickFormatter={formatOrderDate}>
-                <AxisLabel value="Order Date" offset={0} position="insideBottom" />
-              </XAxis>
-              <Legend />
-              <YAxis label="Price, per period" />
-              <Tooltip />
-            </LineChart>
-          </ResponsiveContainer>*/
-import { XYPlot, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, LineSeries } from 'react-vis';
+import { ComposedChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, Line, Area } from 'recharts';
 
 import {
   MarketplaceInfoGrid,
@@ -44,94 +21,39 @@ import { MarketplaceUtilities } from '../../../../../data/marketplaces/Marketpla
 import { Repository } from '../../../../../data/marketplaces/MarketplaceRepository';
 import { IMarketplaceData } from '../../../../../data/DataMock';
 import { SvgIconStyle } from '../../../../../styles/global';
+import moment from 'moment';
 
 export type ChannelCardProps = {
   name: string;
 };
 
-const timeIntervalsKeys = ['day', 'week', 'month', 'year'];
-
-const daysInMonths: any = {
-  january: 31,
-  february: 28, // Bissexto aaaaahh
-  march: 31,
-  april: 30,
-  may: 31,
-  june: 30,
-  july: 31,
-  august: 31,
-  september: 30,
-  october: 31,
-  november: 30,
-  december: 31,
-};
-
-const monthsInOrder = [
-  'january',
-  'february',
-  'march',
-  'april',
-  'may',
-  'june',
-  'july',
-  'august',
-  'september',
-  'october',
-  'november',
-  'december',
-];
-const now = new Date(Date.now());
-const currentMonth: number = now.getMonth();
-const currentDay = now.getDate();
-
-const defaultTimeIntervals = {
-  day: currentDay,
-  month: currentMonth,
-  year: now.getFullYear(),
-};
-
-function getDefaultValues(unit: string) {
-  if (unit === 'day') {
-    const days: any[] = [];
-    for (let day = 1; day < daysInMonths[monthsInOrder[currentMonth as any] as any]; day++) {
-      days.push({ label: day, value: day });
-    }
-    return days;
-  }
-
-  if (unit === 'month') {
-    const months: any[] = [];
-    monthsInOrder.forEach((m) => {
-      months.push({
-        label: m,
-        value: m,
-      });
-    });
-    return months;
-  }
-
-  if (unit === 'year') {
-    const years: any[] = [];
-    for (let year = now.getFullYear() - 5; year < now.getFullYear() + 10; year++)
-      years.push({
-        label: year,
-        value: year,
-      });
-    return years;
-  }
-
-  return [];
-}
-
-function formatOrderDate(tickItem: Date) {
-  console.log(tickItem);
-  return 'tudu';
-}
-
 export default function ChannelCard(props: ChannelCardProps) {
   const [marketPlace, setMarketPlace] = useState<IMarketplaceData | undefined>(undefined);
   const [utilities, setUtilities] = useState<MarketplaceUtilities | undefined>();
+  const [timeUnit, setTimeunit] = useState('month');
+  const [timeInterval, setTimeInterval] = useState<any[]>([]);
+  const [graphData, setGraphData] = useState<any[]>([]);
 
+  useEffect(() => {}, [timeUnit]);
+  useEffect(() => {
+    let data = utilities?.getTotalPriceByDay() ?? {};
+
+    const lineData: {
+      x: number;
+      y: number;
+      split: number;
+    }[] = [];
+
+    for (let day in data) {
+
+      lineData.push({
+        y: data[day].price,
+        x: data[day].date.toDate().getTime(),
+        split: data[day].splitPrice,
+      });
+    }
+    setGraphData(lineData);
+  }, [utilities]);
 
   useEffect(() => {
     Repository.getMarketplace(props.name).then((marketplace) => {
@@ -153,26 +75,32 @@ export default function ChannelCard(props: ChannelCardProps) {
     {
       value: 'day',
       label: 'Dia',
-      daysInUnit: (value: string) => 1,
     },
     {
       value: 'week',
       label: 'Semana',
-      daysInUnit: (value: string) => 7,
     },
     {
       value: 'month',
-      label: 'Mês',
-      daysInUnit: (value: string) => (daysInMonths as any)[value] ?? 30,
+      label: 'Mensal',
     },
     {
       value: 'year',
       label: 'Ano',
-      daysInUnit: (value: string) => 365,
     },
   ]);
 
-  const [timeInterval, setTimeInterval] = useState<any[]>([]);
+  function formatDate(date: number | Date) {
+    console.log('FORMAT DATE ', date);
+    let d: Date;
+    if (date instanceof Date) {
+      d = date;
+    } else {
+      d = new Date();
+      d.setTime(date);
+    }
+    return `${moment(d).year()}/${String(moment(d).month()+1).padStart(2, '0')}/${moment(d).date()}`;
+  }
 
   return (
     <FullRowCard>
@@ -206,14 +134,7 @@ export default function ChannelCard(props: ChannelCardProps) {
         <ChartFilters>
           <ChartFiltersTitle>Mostrando:</ChartFiltersTitle>
           <ChartFilterPickTimeUnit>
-            <Select
-              options={timeUnits}
-              value={[timeUnits[2]]}
-              onChange={(value, changeEvent) => {
-                if (changeEvent.action === 'select-option')
-                  setTimeInterval(getDefaultValues(((value as any)?.value as string) ?? ''));
-              }}
-            ></Select>
+            <Select options={timeUnits}></Select>
           </ChartFilterPickTimeUnit>
           <ChartFilterPickTimeInterval>
             <Select
@@ -224,26 +145,30 @@ export default function ChannelCard(props: ChannelCardProps) {
         </ChartFilters>
         {marketPlace !== undefined && utilities !== undefined ? (
           <MarketplacePerformanceChart>
-            <XYPlot height={300} width={1200} xType="ordinal">
-              <VerticalGridLines />
-              <HorizontalGridLines />
-              <XAxis />
-              <YAxis />
-              <LineSeries
-                data={(() => {
-                  let allData = utilities!.getTotalPriceByDay();
-                  let lineData: {
-                    x: string;
-                    y: number;
-                  }[] = [];
-                  for (let day in allData) {
-                    lineData.push({ y: allData[day], x: day });
-                  }
-                  console.log('LINEDATA', lineData);
-                  return lineData as any[];
-                })()}
-              />
-            </XYPlot>
+            <ResponsiveContainer>
+              <ComposedChart width={500} height={300} data={graphData}>
+                <XAxis
+                  tickFormatter={(toFormat) => {
+                    console.log(toFormat);
+                    return formatDate(toFormat);
+                  }}
+                  
+                  type="category"
+                  dataKey="x"
+                />
+                <YAxis dataKey="y" />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                <Tooltip
+                  formatter={(v, a) => [`R$ ${Number(v).toFixed(2)}`, a == 'y' ? 'Pedido' : 'Repassado']}
+                  labelFormatter={(value) => {
+                    console.log(value);
+                    return 'Acumulado do dia';
+                  }}
+                />
+                <Area type="linear" fill="var(--primary-color-25)" stroke="var(--primary-color)" dataKey="y"></Area>
+                <Area type="linear" fill="var(--primary-color-50)" stroke="var(--primary-color)" dataKey="split"></Area>
+              </ComposedChart>
+            </ResponsiveContainer>
           </MarketplacePerformanceChart>
         ) : (
           ''

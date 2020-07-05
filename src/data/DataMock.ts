@@ -49,9 +49,10 @@ let orderStatusRandom = [
 
 export interface IMarketplaceOrder {
   status: string;
-  order_date: Date;
+  order_date: Date|String;
   productItens: IOrderProductItem[];
   total_price: number;
+  amount_after_split : number;
   payment: IPayment;
 }
 

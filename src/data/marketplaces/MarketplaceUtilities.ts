@@ -1,5 +1,6 @@
 import { IMarketplaceOrder } from '../DataMock';
 import { IProductInfo } from '../product/IProductInfo';
+import moment from 'moment';
 
 interface MarketplaceUtilitiesParam {
   orders: IMarketplaceOrder[];
@@ -11,9 +12,6 @@ export type OrderCategorizer = (order: IMarketplaceOrder) => string;
 export class MarketplaceUtilities {
   private _orders: IMarketplaceOrder[];
   private _products: IProductInfo[];
-  private _priceByDay?: {
-    [dayString: string]: number;
-  };
 
   constructor({ orders, products }: MarketplaceUtilitiesParam) {
     this._orders = orders;
@@ -41,25 +39,43 @@ export class MarketplaceUtilities {
   }
 
   public getTotalPriceByDay(range?: { start: Date; end: Date }) {
-    if (this._priceByDay != null) return this._priceByDay;
 
     const priceByDay: {
-      [dayString: string]: number;
+      [dayStr: string]: {
+        price: number;
+        splitPrice: number;
+        date: moment.Moment;
+      };
     } = {};
 
-    this._orders.forEach((order) => {
+    let sortedOrders = this._orders.sort((a, b) => (a.order_date > b.order_date ? 1 : -1));
+
+    sortedOrders.forEach((order) => {
       // Skip out of range values
       if (range != null) {
         if (order.order_date < range.start || order.order_date > range.end) return;
       }
 
-      let d = new Date(order.order_date);
-      let dayStr = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-      if (priceByDay[dayStr] === undefined) priceByDay[dayStr] = order.total_price;
-      else priceByDay[dayStr] += order.total_price;
-    });
+      let d: moment.Moment;
 
-    this._priceByDay = priceByDay;
+      if (typeof order.order_date === 'string') {
+        d = moment((order.order_date as string).slice(0, -1), 'YYYY-MM-DDTHH:mm:ssS');
+      } else {
+        d = moment(order.order_date as Date);
+      }
+
+      let dFormat = d.format('YYYY-MM-DD');
+      if (priceByDay[dFormat] == null) {
+        priceByDay[dFormat] = {
+          date: d,
+          price: order.total_price,
+          splitPrice: order.amount_after_split,
+        };
+      } else {
+        priceByDay[dFormat].price += order.total_price;
+        priceByDay[dFormat].splitPrice += order.amount_after_split;
+      }
+    });
 
     return priceByDay;
   }

@@ -73,7 +73,7 @@ export const ChartFilterPickTimeInterval = styled.div``;
 export const MarketplacePerformanceChart = styled.div`
   width: 100%;
   position: relative;
-  height: 400px;
+  height: 500px;
   margin: 10px 0px;
 `;
 
