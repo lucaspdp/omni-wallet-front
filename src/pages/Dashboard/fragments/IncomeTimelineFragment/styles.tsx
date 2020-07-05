@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ScheduleComponent} from '@syncfusion/ej2-react-schedule';
 
 export const Container = styled.div`
   height: 100%;
@@ -150,13 +149,4 @@ export const Legenda = styled.ul`
 `;
 export const Despesas = styled.ul`
   
-`;
-export const Schedule = styled(ScheduleComponent)`
-  .e-current-date .e-date-header{
-    background-color: var(--primary-color)!important;
-  }
-
-  td.e-current-day span{
-    color: var(--primary-color)!important;
-  }
 `;

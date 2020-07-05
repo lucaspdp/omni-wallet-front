@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar } from 'recharts';
 import faker from 'faker';
 
-import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, RenderCellEventArgs } from '@syncfusion/ej2-react-schedule';
-import { extend, removeClass } from '@syncfusion/ej2-base';
-
 import {
   Container,
   DateBar,
@@ -13,7 +10,6 @@ import {
   Legenda,
   Despesas,
   Top,
-  Schedule,
   Button
 } from './styles';
 
@@ -253,16 +249,7 @@ export default function IncomeTimelineFragment() {
 
           </Despesas>
         </Top>
-        <ScheduleComponent ></ScheduleComponent>
-        <Schedule currentView='Month' showHeaderBar={false} renderCell={(e:RenderCellEventArgs)=>{
-          if(e){
-            if (e.elementType === "dateHeader" || e.elementType === "monthCells") {
-              removeClass(e.element.childNodes, "e-navigate");
-            }
-          }
-        }}>
-          <Inject services={[Month]}  />
-        </Schedule>
+        
       </IncomingCalendar>
     </Container>
   );
