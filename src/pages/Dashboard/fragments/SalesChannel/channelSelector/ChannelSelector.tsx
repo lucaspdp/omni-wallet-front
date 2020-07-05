@@ -29,8 +29,8 @@ export default function ChannelSelector() {
         colors: {
           ...theme.colors,
           primary: 'var(--primary-color)',
-          primary75: 'var(--primary-color-75)',
-          primary50: 'var(--primary-color-50)',
+          primary75: 'var(--primary-color)',
+          primary50: 'var(--primary-color)',
           primary25: 'var(--primary-color-25)'
 
         },

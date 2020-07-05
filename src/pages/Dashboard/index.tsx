@@ -17,6 +17,7 @@ export default function Dashboard() {
       ></SideMenu>
       <Body>{selectedItem !== ''? DashboardFragments[selectedItem].fragment : ''}</Body>
       <BodyShadowFx />
+      
     </Container>
   );
 }

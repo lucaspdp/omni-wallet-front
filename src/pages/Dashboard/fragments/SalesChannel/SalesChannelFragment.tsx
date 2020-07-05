@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Container, ChannelVisualization, FragmentViewSelector, FragmentChannelSelector, FragmentHeader } from './SalesChannelStyles';
+import {
+  Container,
+  ChannelVisualization,
+  FragmentViewSelector,
+  FragmentChannelSelector,
+  FragmentHeader,
+  FragmentViewSelectorTitle,
+} from './SalesChannelStyles';
 import HorizontalMenu from '../../../../components/HorizontalMenu/HorizontalMenu';
 import AllChannelsVisualization from './allChannelsView/AllChannelsVisualization';
 import PickChannelVisualization from './pickChannelView/PickChannelVisualization';
@@ -21,6 +28,7 @@ export default function SalesChannelFragment() {
     <Container>
       <FragmentHeader>
         <FragmentViewSelector>
+          <FragmentViewSelectorTitle>Tipo de visualização:</FragmentViewSelectorTitle>
           <HorizontalMenu
             displayMenuTitle={false}
             onMenuItemClick={(id: string) => {
