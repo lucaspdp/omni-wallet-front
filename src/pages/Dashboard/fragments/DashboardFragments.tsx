@@ -10,7 +10,7 @@ import PrivacyIcon from '../../../assets/img/icons/privacy.svg';
 // Fragments
 import SalesChannelFragment from './SalesChannel/SalesChannelFragment';
 import IncomeTimelineFragment from './IncomeTimelineFragment/index';
-import SimulationFragment from './SimulationFragment';
+import SimulationFragment from './SimulationFragment/index';
 import BillsFragment from './BillsFragment';
 import RecommendationFragment from './RecommendationFragment';
 import ConfigurationFragment from './ConfigurationFragment';
