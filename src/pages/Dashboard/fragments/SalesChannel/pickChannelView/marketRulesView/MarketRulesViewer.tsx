@@ -11,6 +11,7 @@ import {
   ActionLink,
 } from './MarketRulerViewerStyles';
 import { getRandonPaymentMethod } from '../../../../../../data/paymentMethods/PaymentMethodsRepository';
+import { CurrencyFormatter } from '../../../../../../data/Intl';
 
 export type MarketRulesViewerProps = {
   logo?: string;
@@ -45,10 +46,12 @@ export default function MarketRulesViewer(props: MarketRulesViewerProps) {
           <PaymentInfoColumn>Crédito parcelado: 4,49% + 2,99% por parcela</PaymentInfoColumn>
         </MarketPaymentInfoContainer>
         <MarketPaymentImpact>
-          <div style={{ width: `100%` }}>{props.amount}</div>
-          <div style={{ width: `${100 - (totalTax * 3)}%` }}>{props.amount * (1 - totalTax / 100)}</div>
+          <div style={{ width: `100%` }}>{CurrencyFormatter.format(props.amount)}</div>
+          <div style={{ width: `${100 - totalTax * 2}%` }}>
+            {CurrencyFormatter.format(props.amount * (1 - totalTax / 100))}
+          </div>
           <div style={{ width: `${100 - (totalTax + props.marketTax) * 3}%` }}>
-            {props.amount * (1 - (totalTax + props.marketTax) / 100)}
+            {CurrencyFormatter.format(props.amount * (1 - (totalTax + props.marketTax) / 100))}
           </div>
         </MarketPaymentImpact>
         <ActionLink>Antecipação financeira solicitada</ActionLink>

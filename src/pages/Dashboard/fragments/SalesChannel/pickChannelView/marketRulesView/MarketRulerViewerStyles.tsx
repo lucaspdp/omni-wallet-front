@@ -76,9 +76,11 @@ export const MarketPaymentImpact = styled.div`
     }
     &:nth-child(2) {
       background-color: #00d0fb;
+      max-width: 90%;
     }
     &:nth-child(3) {
       background-color: #a3a0fb;
+      max-width: 80%;
     }
   }
 `;

@@ -12,9 +12,7 @@ import { IPaymentMethod } from '../paymentMethods/IPaymentMethod';
 import { getRandonPaymentMethod } from '../paymentMethods/PaymentMethodsRepository';
 import { ISplitRule } from '../splitRules/ISplitRule';
 
-
-
-export class MarketplaceRepository {
+class MarketplaceRepository {
   private static productGenerationRules = {
     amount: 50,
     maxPrice: 30,
@@ -50,8 +48,6 @@ export class MarketplaceRepository {
   constructor() {
     const productCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_PRODUCTS_CACHE_NAME);
     const orderCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_ORDERS_CACHE_NAME);
-
-    
   }
 
   public async getMarketplace(name: string): Promise<IMarketplaceData> {
@@ -186,7 +182,7 @@ export class MarketplaceRepository {
 }
 export const Repository = new MarketplaceRepository();
 
-const Marketplaces: {
+export const Marketplaces: {
   [name: string]: IMarketplaceData;
 } = {
   iFood: {
@@ -213,6 +209,7 @@ const Marketplaces: {
   b2w: {
     name: 'b2w',
     logo: B2WLogo,
+    color_theme: '#f5b41a',
     joinedOnDate: Faker.date.recent(200),
     orderStatus: ['DELIVERED', 'PAID', 'CANCELLED', 'RETURNED'],
     splitRules: [
@@ -232,6 +229,7 @@ const Marketplaces: {
   },
   viaVarejo: {
     name: 'viavarejo',
+    color_theme: '#b571f9',
     logo: ViaVarejoLogo,
     joinedOnDate: Faker.date.recent(200),
     orderStatus: ['DELIVERED', 'PAID', 'CANCELLED', 'RETURNED'],
