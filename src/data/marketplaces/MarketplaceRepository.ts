@@ -19,7 +19,7 @@ export class MarketplaceRepository {
     minPrice: 8,
   };
   private static ordersGenerationRules = {
-    amount: 150,
+    amount: 12,
     maxPrice: 100,
     minPrice: 8,
   };

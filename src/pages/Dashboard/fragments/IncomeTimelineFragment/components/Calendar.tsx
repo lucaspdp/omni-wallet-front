@@ -1,9 +1,7 @@
 import React from 'react'
 
-export default function Calendar() {
+export default function Calendar(props) {
   return (
-    <div>
-      
-    </div>
+    <h1>Hello World</h1>
   )
 }

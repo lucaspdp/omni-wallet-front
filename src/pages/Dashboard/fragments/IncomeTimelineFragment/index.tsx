@@ -12,6 +12,7 @@ import {
   Top,
   Button
 } from './styles';
+import Calendar from './components/Calendar';
 
 export default function IncomeTimelineFragment() {
 
@@ -249,7 +250,7 @@ export default function IncomeTimelineFragment() {
 
           </Despesas>
         </Top>
-        
+        <Calendar test="TEST"/>
       </IncomingCalendar>
     </Container>
   );
