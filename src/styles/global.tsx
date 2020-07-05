@@ -25,7 +25,8 @@ export default createGlobalStyle`
 
   @font-face {
     font-family: "Circular Std Book"; 
-    src: url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot"); src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"), 
+    src: url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot"); 
+    src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix") format("embedded-opentype"), 
     url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2") format("woff2"), 
     url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff") format("woff"), 
     url("https://db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf") format("truetype"), 
@@ -57,6 +58,8 @@ export default createGlobalStyle`
     --primary-color-75: #2DBC9CAA;
     --primary-color-50: #2DBC9C88;
     --primary-color-25: #2DBC9C44;
+    --primary-color-15: #2DBC9C22;
+    --primary-color-10: #2DBC9C11;
     
     --secondary-color: #D94343; 
     --font-primary: #43425D;

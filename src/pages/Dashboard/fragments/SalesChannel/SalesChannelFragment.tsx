@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Container, ChannelVisualization, FragmentViewSelector, FragmentChannelSelector, FragmentHeader } from './SalesChannelStyles';
+import {
+  Container,
+  ChannelVisualization,
+  FragmentViewSelector,
+  FragmentChannelSelector,
+  FragmentHeader,
+  FragmentViewSelectorTitle,
+  ChannelSelectorTitle
+} from './SalesChannelStyles';
 import HorizontalMenu from '../../../../components/HorizontalMenu/HorizontalMenu';
 import AllChannelsVisualization from './allChannelsView/AllChannelsVisualization';
 import PickChannelVisualization from './pickChannelView/PickChannelVisualization';
@@ -7,6 +15,8 @@ import ChannelSelector from './channelSelector/ChannelSelector';
 
 export default function SalesChannelFragment() {
   const [selectedView, setSelectedView] = useState('SingleChannel');
+  const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
+
   const views: any = {
     AllChannels: {
       label: 'Todos os canais',
@@ -14,13 +24,14 @@ export default function SalesChannelFragment() {
     },
     SingleChannel: {
       label: 'Por canal',
-      channelVisualization: <PickChannelVisualization />,
+      channelVisualization: <PickChannelVisualization selectedChannels={selectedChannels} />,
     },
   };
   return (
     <Container>
       <FragmentHeader>
         <FragmentViewSelector>
+          <FragmentViewSelectorTitle>Tipo de visualização:</FragmentViewSelectorTitle>
           <HorizontalMenu
             displayMenuTitle={false}
             onMenuItemClick={(id: string) => {
@@ -31,7 +42,8 @@ export default function SalesChannelFragment() {
           ></HorizontalMenu>
         </FragmentViewSelector>
         <FragmentChannelSelector>
-          <ChannelSelector></ChannelSelector>
+          <ChannelSelectorTitle>Canais cadastrados (3) : </ChannelSelectorTitle>
+          <ChannelSelector onChange={(values) => setSelectedChannels(values)}></ChannelSelector>
         </FragmentChannelSelector>
       </FragmentHeader>
       <ChannelVisualization>
