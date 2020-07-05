@@ -12,6 +12,8 @@ import { IPaymentMethod } from '../paymentMethods/IPaymentMethod';
 import { getRandonPaymentMethod } from '../paymentMethods/PaymentMethodsRepository';
 import { ISplitRule } from '../splitRules/ISplitRule';
 
+
+
 export class MarketplaceRepository {
   private static productGenerationRules = {
     amount: 50,
@@ -19,7 +21,7 @@ export class MarketplaceRepository {
     minPrice: 8,
   };
   private static ordersGenerationRules = {
-    amount: 12,
+    amount: 200,
     maxPrice: 100,
     minPrice: 8,
   };
