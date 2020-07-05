@@ -77,7 +77,7 @@ export default function IncomeTimelineFragment() {
 
   function generateGains(){
     const daysInMonth = 30;
-    var daysGain = [];
+    var daysGain : any[] = [];
     var totalGain = availableMoney + incomingMoney;
     for(var i = 0; i < daysInMonth; i++){
       if(totalGain <= 0) break;
