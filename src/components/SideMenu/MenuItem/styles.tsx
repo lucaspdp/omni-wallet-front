@@ -35,7 +35,9 @@ export const Container = styled.div<SideMenuItemProps>`
     props.selectable ?? true
       ? `cursor: pointer;${
           props.selected
-            ? ''
+            ? `
+              background-color: rgba(0, 0, 0, 0.1);
+            `
             : `
         &:hover {
         background-color: rgba(0, 0, 0, 0.05);

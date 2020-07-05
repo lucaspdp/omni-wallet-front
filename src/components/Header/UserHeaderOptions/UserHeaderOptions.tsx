@@ -10,6 +10,7 @@ export default function UserHeaderOptions() {
   const [nameSuffix] = useState(faker.name.suffix());
   const [lastName] = useState(faker.name.lastName());
   const [firstName] = useState(faker.name.firstName());
+  const [companyName] = useState(faker.company.companyName());
 
   return (
     <HeaderUserOptions>
@@ -22,7 +23,7 @@ export default function UserHeaderOptions() {
         <div>
           [{nameSuffix}] {lastName}, {firstName}
         </div>
-        <div>{faker.company.companyName()}</div>
+        <div>{companyName}</div>
       </UserInformation>
     </HeaderUserOptions>
   );

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="799" height="655" viewBox="0 0 799 655">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_207" data-name="Retângulo 207" width="799" height="625" transform="translate(11014 -1935)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a7a7ff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#54d8ff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="clip-Sign_in_page_1">
+      <rect width="799" height="655"/>
+    </clipPath>
+  </defs>
+  <g id="Sign_in_page_1" data-name="Sign in page – 1" clip-path="url(#clip-Sign_in_page_1)">
+    <g id="Grupo_de_máscara_19" data-name="Grupo de máscara 19" transform="translate(-11014 1965)" clip-path="url(#clip-path)">
+      <g id="Grupo_278" data-name="Grupo 278" transform="translate(10187.399 -1860.217)">
+        <g id="Products_Sold_Graph" data-name="Products Sold Graph" transform="translate(329.464)" opacity="0.201">
+          <path id="Filled.Graph" d="M330,634.208V477.531S551.55,580.3,728.57,586.752c191.414-6.255,224.559-50.236,373.656-109.222,127.41-49.165,254.472-62.659,376.428-59.185s227.661,56.585,371.72,62.028c254.136-21.928,383.8-132.793,400.967-179.1v391.2L330,692.652Z" transform="translate(-330 -299.45)" opacity="0.7" fill="url(#linear-gradient)"/>
+          <path id="Line.Graph" d="M313,423.731S533.12,528.948,707.163,531.213s240.893-54.3,374.2-107.343,260.033-62.1,376.705-60.316,230.094,57.372,373.449,60.322,375.274-96.089,401.063-178.637" transform="translate(-311.237 -245.24)" fill="none" stroke="#a3a0fb" stroke-width="2"/>
+          <g id="Mar.Ellipse" transform="translate(761.678 170.559)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+          <g id="Feb.Ellipse" transform="translate(507.103 268.029)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+        </g>
+        <g id="Products_Sold_Graph-2" data-name="Products Sold Graph" transform="translate(238.26 167.328)" opacity="0.201">
+          <path id="Filled.Graph-2" data-name="Filled.Graph" d="M330,634.208V477.531S551.55,580.3,728.57,586.752c191.414-6.255,224.559-50.236,373.656-109.222,127.41-49.165,254.472-62.659,376.428-59.185s227.661,56.585,371.72,62.028c254.136-21.928,383.8-132.793,400.967-179.1v391.2L330,692.652Z" transform="translate(-330 -299.45)" opacity="0.7" fill="url(#linear-gradient)"/>
+          <path id="Line.Graph-2" data-name="Line.Graph" d="M313,423.731S533.12,528.948,707.163,531.213s240.893-54.3,374.2-107.343,260.033-62.1,376.705-60.316,230.094,57.372,373.449,60.322,375.274-96.089,401.063-178.637" transform="translate(-311.237 -245.24)" fill="none" stroke="#a3a0fb" stroke-width="2"/>
+          <g id="Mar.Ellipse-2" data-name="Mar.Ellipse" transform="translate(761.678 170.559)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+        </g>
+        <g id="Total_Views_Graph" data-name="Total Views Graph" transform="translate(217.399 16.016)" opacity="0.201">
+          <path id="Filled.Graph-3" data-name="Filled.Graph" d="M330,593.675V354.422S546.238,592.289,723.868,601.241c198.191-2.016,199.815-123.486,373.974-189.984,145.8-52.213,257.054,90.215,379.01,93.689s206.124-97.614,372.509-104.637c215.572,10.576,388.552,145.634,401.975,152.9v98.74L330,652.119Z" transform="translate(-328.809 -354.422)" opacity="0.7" fill="url(#linear-gradient-3)"/>
+          <path id="Line.Graph-3" data-name="Line.Graph" d="M312.953,279.164S535.921,521.415,710.18,523.68s233.848-142.734,373.765-191.618,261.294,93.244,378.111,95.027,228.661-106.778,372.193-103.827,307.636,85.071,398.359,149.85" transform="translate(-312.953 -277.137)" fill="none" stroke="#54d8ff" stroke-width="2"/>
+          <g id="May.Ellipse" transform="translate(1508.319 36.991)" fill="#fff" stroke="#55d8fe" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+          <g id="Mar.Ellipse-3" data-name="Mar.Ellipse" transform="translate(819.503 36.398)" fill="#fff" stroke="#55d8fe" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+        </g>
+        <g id="Total_Views_Graph-2" data-name="Total Views Graph" transform="translate(0 95.254)" opacity="0.201">
+          <path id="Filled.Graph-4" data-name="Filled.Graph" d="M330,593.675V354.422S546.238,592.289,723.868,601.241c198.191-2.016,199.815-123.486,373.974-189.984,145.8-52.213,257.054,90.215,379.01,93.689s206.124-97.614,372.509-104.637c215.572,10.576,388.552,145.634,401.975,152.9v98.74L330,652.119Z" transform="translate(-329.527 -354.422)" opacity="0.7" fill="url(#linear-gradient-3)"/>
+          <path id="Line.Graph-4" data-name="Line.Graph" d="M312.953,279.164S535.921,521.415,710.18,523.68s233.848-142.734,373.765-191.618,261.294,93.244,378.111,95.027,228.661-106.778,372.193-103.827,307.636,85.071,398.359,149.85" transform="translate(-312.953 -277.137)" fill="none" stroke="#54d8ff" stroke-width="2"/>
+          <g id="Apr.Ellipse" transform="translate(1211.517 130.937)" fill="#fff" stroke="#55d8fe" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+          <g id="Mar.Ellipse-4" data-name="Mar.Ellipse" transform="translate(760.374 45.805)" fill="#fff" stroke="#55d8fe" stroke-width="2">
+            <circle cx="8.804" cy="8.804" r="8.804" stroke="none"/>
+            <circle cx="8.804" cy="8.804" r="7.804" fill="none"/>
+          </g>
+        </g>
+        <path id="Caminho_400" data-name="Caminho 400" d="M574.515,960h0Z" transform="translate(723.188 -474.631)" fill="#2dbc9c"/>
+      </g>
+    </g>
+  </g>
+</svg>

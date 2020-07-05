@@ -39,6 +39,9 @@ export default createGlobalStyle`
     &:focus{
       outline: none;
     }
+    &::-webkit-scrollbar{
+      width: 0px;
+    }
   }
 
   html, body, #root{

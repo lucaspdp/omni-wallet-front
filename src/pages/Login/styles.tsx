@@ -12,7 +12,28 @@ export const Content = styled.div`
 export const Left = styled.div`
   width: 50%;
   height: 100%;
-  background: linear-gradient(218deg, #242348, #5a55aa);
+  background: #2DBC9C;
+  overflow-y: hidden;
+  position: relative;
+
+  h2{
+    width: 90%;
+    position: absolute;
+    top: 30%;
+    font-size: 50px;
+    z-index: 2;
+    left: 5%;
+    color: #F1F1F1;
+  }
+  img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    object-fit: cover;
+    bottom: -50px;
+    z-index: 1;
+  }
 
   @media only screen and (max-width: 750px){
     width: 100%;
@@ -28,6 +49,9 @@ export const Right = styled.div`
 
   justify-content: flex-start;
   align-items: center;
+
+  overflow-y: scroll;
+
   @media only screen and (max-width: 750px){
     width: 80%;
     height: 90%;
@@ -36,10 +60,6 @@ export const Right = styled.div`
     top: 5%;
     left: 10%;
     overflow-y: scroll;
-
-    ::-webkit-scrollbar{
-      width: 0px;
-    }
 
     border-radius: 10px;
   }
@@ -62,7 +82,7 @@ export const Title = styled.div`
 
   display: flex;
   align-items: center;
-  margin-top: 130px;
+  margin-top: 20%;
   @media only screen and (max-width: 750px){
   
     margin-top: 50px;
@@ -163,7 +183,7 @@ export const FormLink = styled(Link)`
 `;
 export const TermsOfUse = styled.span`
 
-  justify-self: flex-end;
+  margin-top: auto;
 
 `;
 

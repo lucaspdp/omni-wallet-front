@@ -9,7 +9,7 @@ import ConfigurationIcon from '../../../assets/img/icons/configuration.svg';
 import PrivacyIcon from '../../../assets/img/icons/privacy.svg';
 // Fragments
 import SalesChannelFragment from './SalesChannel/SalesChannelFragment';
-import IncomeTimelineFragment from './IncomeTimelineFragment';
+import IncomeTimelineFragment from './IncomeTimelineFragment/index';
 import SimulationFragment from './SimulationFragment';
 import BillsFragment from './BillsFragment';
 import RecommendationFragment from './RecommendationFragment';
