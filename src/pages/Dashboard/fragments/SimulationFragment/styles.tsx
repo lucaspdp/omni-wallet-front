@@ -4,9 +4,10 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  max-height: 100%;
+  max-height: 100vh;
   background: #fff;
   flex-direction: column;
+
   overflow-y: scroll;
 `;
 export const PaymentContainer = styled.div`
