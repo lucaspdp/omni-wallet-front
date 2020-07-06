@@ -31,8 +31,28 @@ export default createGlobalStyle`
     &:focus{
       outline: none;
     }
-    &::-webkit-scrollbar{
-      width: 0px;
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #fff;
+      box-shadow: inset 0 0 5px grey; 
+      border-radius: 10px;  
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color-25);
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-color);
+      box-shadow: inset 0 0 5px grey; 
     }
   }
 
