@@ -74,13 +74,16 @@ export default function ChannelCard(props: ChannelCardProps) {
       label: 'Anuais',
     },
   ]);
-  const [selectedTimeUnit, setSelectedTimeUnit] = useState<{ value: string; label: string } | undefined>(timeUnits[3]);
+  const [selectedTimeUnit, setSelectedTimeUnit] = useState<{ value: string; label: string } | undefined>();
 
   const [timeIntervals, setTimeIntervals] = useState<TimeIntervalOption[] | undefined>();
   const [selectedTimeInterval, setSelectedTimeInterval] = useState<TimeIntervalOption | undefined>();
 
   const [priceByDayGraphData, setPriceByDayGraphData] = useState<any[]>([]);
 
+  useEffect(() => {
+    setSelectedTimeUnit(timeUnits[3]);
+  }, [utilities]);
   useEffect(() => {
     let intervals = timeIntervalBuilders[selectedTimeUnit?.value ?? 'month']();
 
@@ -140,7 +143,7 @@ export default function ChannelCard(props: ChannelCardProps) {
         end: selectedTimeInterval?.end,
       }) ?? {};
     setPaymentMethodsData(priceByPaymentMethods);
-  }, [selectedTimeInterval]);
+  }, [selectedTimeInterval, utilities, selectedTimeUnit]);
 
   useEffect(() => {
     Repository.getMarketplace(props.name).then((marketplace) => {
@@ -184,11 +187,9 @@ export default function ChannelCard(props: ChannelCardProps) {
   let mediumTicket = 0;
 
   if (selectedTimeInterval != null && utilities != null) {
-    let newStart = moment(selectedTimeInterval.start)
-      .subtract(moment(selectedTimeInterval.end).diff(selectedTimeInterval.start))
-      .toDate();
+    let newStart = moment(selectedTimeInterval.start).subtract(1, 'year').toDate();
 
-    let newEnd = moment(selectedTimeInterval.start).toDate();
+    let newEnd = moment(selectedTimeInterval.end).subtract(1, 'year').toDate();
     let dataFromPeriod = utilities?.getTotalPriceByDay({
       start: newStart,
       end: newEnd,

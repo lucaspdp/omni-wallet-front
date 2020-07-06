@@ -25,8 +25,8 @@ export const timeIntervalBuilders: any = {
 
     let now = moment();
 
-    for (let a = 0; a < 14; a++) {
-      let start = moment().subtract(7, 'month');
+    for (let a = 0; a < 24; a++) {
+      let start = moment().subtract(20, 'month');
       let mon = start.add(a, 'month');
 
       let startInt = mon.set('date', 1).toDate();
@@ -61,8 +61,14 @@ export const timeIntervalBuilders: any = {
 
       let start = moment().subtract(3, 'day');
 
-      let startInt = start.clone().add(a * multiplier, 'hours').toDate();
-      let endInt = start.clone().add((a+1) * multiplier, 'hours').toDate();
+      let startInt = start
+        .clone()
+        .add(a * multiplier, 'hours')
+        .toDate();
+      let endInt = start
+        .clone()
+        .add((a + 1) * multiplier, 'hours')
+        .toDate();
 
       let prop = {
         value: startInt.toISOString(),

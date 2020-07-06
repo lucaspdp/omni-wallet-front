@@ -3,7 +3,7 @@ import { SvgIconStyle } from '../../styles/global';
 
 export const HeaderContainer = styled.div`
   display: grid;
-  grid-template-columns: 45px 200px 1fr 300px;
+  grid-template-columns: 45px 300px 1fr 300px;
   grid-template-rows: 1fr;
   grid-column: 2 / span 1;
 `;
@@ -17,7 +17,7 @@ export const BrandName = styled.div`
   line-height: 15px;
   font-weight: bold;
   align-self: center;
-  font-size: 9pt;
+  font-size: 13pt;
 `;
 
 export const UserHeaderOptions = styled.div`

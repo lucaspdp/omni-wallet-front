@@ -7,8 +7,6 @@ export const Container = styled.div`
   max-height: 100vh;
   background: #fff;
   flex-direction: column;
-
-  overflow-y: scroll;
 `;
 export const PaymentContainer = styled.div`
   display: flex;
@@ -19,21 +17,21 @@ export const PaymentContainer = styled.div`
   padding-right: 50px;
   padding-bottom: 20px;
 
-  span.type{
+  span.type {
     font-weight: 600;
     font-size: 14;
     margin-bottom: 10px;
-    .detail{
+    .detail {
       font-weight: 400;
     }
   }
 
-  div.paymentMethods{
+  div.paymentMethods {
     display: flex;
     justify-content: space-between;
     width: 100%;
 
-    .paymentCard{
+    .paymentCard {
       display: flex;
       flex-direction: column;
       width: 27%;
@@ -44,15 +42,14 @@ export const PaymentContainer = styled.div`
       border: 1px solid transparent;
       transition: border-color 0.2s;
 
-      &:hover{
+      &:hover {
         border-color: var(--primary-color);
       }
 
       justify-content: center;
       padding: 0 20px;
 
-
-      img{
+      img {
         margin: 0 auto;
         width: 120px;
         height: 60px;
@@ -61,29 +58,29 @@ export const PaymentContainer = styled.div`
         margin-top: 10px;
       }
 
-      span.sub{
+      span.sub {
         font-weight: 800;
         font-size: 16px;
         margin-top: 10px;
 
-        .desc{
+        .desc {
           margin-left: 5px;
           font-weight: 200;
         }
       }
 
-      .now{
+      .now {
         margin-top: 10px;
         margin: 0 auto;
         color: transparent;
         margin-top: 30px;
 
-        &.active{
+        &.active {
           color: #656565;
         }
       }
 
-      button{
+      button {
         margin: 0 auto;
         background: transparent;
         cursor: pointer;
@@ -95,7 +92,7 @@ export const PaymentContainer = styled.div`
         margin-bottom: 30px;
         width: 80px;
 
-        &:hover{
+        &:hover {
           border-bottom-color: var(--primary-color);
         }
       }
@@ -104,7 +101,6 @@ export const PaymentContainer = styled.div`
 `;
 
 export const CompareButton = styled.button`
-
   background: var(--primary-color);
   border-radius: 29px;
   width: 180px;
@@ -119,8 +115,7 @@ export const CompareButton = styled.button`
 
   transition: transform 0.2s;
 
-  &:hover{
+  &:hover {
     transform: scale(1.05);
   }
-
 `;

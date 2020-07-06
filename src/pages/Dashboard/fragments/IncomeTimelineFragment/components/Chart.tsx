@@ -63,7 +63,7 @@ export default function Chart() {
 
     {
       week: '3',
-      pay: 13323123,
+      pay: 133123,
       receive: 14224,
     },
     {
@@ -129,8 +129,8 @@ export default function Chart() {
                 <CartesianGrid />
                 <XAxis dataKey="week" />
                 <YAxis />
-                <Bar dataKey="receive" fill='#2dbc9c'></Bar>
-                <Bar dataKey="pay" fill='#ff8373'></Bar>
+                <Bar dataKey="receive" fill="#2dbc9c"></Bar>
+                <Bar dataKey="pay" fill="#ff8373"></Bar>
               </ComposedChart>
             </ResponsiveContainer>
           </FutureBillsChart>

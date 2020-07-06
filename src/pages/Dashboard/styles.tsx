@@ -10,7 +10,7 @@ export const Container = styled.div`
   left: 0px;
   display: grid;
   grid-template-columns: 55px 1fr;
-  grid-template-rows: 45px 1fr;
+  grid-template-rows: 55px 1fr;
 `;
 
 export const Header = styled(HeaderComponent)`

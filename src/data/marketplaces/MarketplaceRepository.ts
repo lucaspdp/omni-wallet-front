@@ -14,18 +14,18 @@ import { ISplitRule } from '../splitRules/ISplitRule';
 
 class MarketplaceRepository {
   private static productGenerationRules = {
-    amount: 50,
+    amount: 40,
     maxPrice: 30,
     minPrice: 8,
   };
   private static ordersGenerationRules = {
-    amount: 200,
-    maxPrice: 100,
+    amount: 2000,
+    maxPrice: 40,
     minPrice: 8,
   };
 
   private static productItemGenerationRules = {
-    maxQuantity: 4,
+    maxQuantity: 7,
     minQuantity: 1,
     maxDiscount: 5,
     maxTax: 8,
@@ -42,8 +42,8 @@ class MarketplaceRepository {
     [marketName: string]: IMarketplaceOrder[];
   } = {};
 
-  protected maxAgeOfOrders: Date = moment().subtract(15, 'month').toDate();
-  protected maxPostDateOfOrders: Date = moment().add(3, 'month').toDate();
+  protected maxAgeOfOrders: Date = moment().subtract(6, 'month').toDate();
+  protected maxPostDateOfOrders: Date = moment().add(2, 'month').toDate();
 
   constructor() {
     const productCacheStr = localStorage.getItem(MarketplaceRepository.LOCAL_PRODUCTS_CACHE_NAME);
@@ -227,7 +227,7 @@ export const Marketplaces: {
     products: [],
     planInfo: '10,2% dos pedidos',
   },
-  viaVarejo: {
+  viavarejo: {
     name: 'viavarejo',
     color_theme: '#b571f9',
     logo: ViaVarejoLogo,
@@ -247,6 +247,6 @@ export const Marketplaces: {
     ],
     orders: [],
     products: [],
-    planInfo: '8,75% dos pedidos + 5 reais a cada 100 reais',
+    planInfo: '8,75% dos pedidos',
   },
 };
