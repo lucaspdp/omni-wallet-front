@@ -3,7 +3,7 @@ import { Container, Header, Body, SideMenu, BodyShadowFx } from './styles';
 import { DashboardFragments } from './fragments/DashboardFragments';
 
 export default function Dashboard() {
-  const separatorAfter: (keyof typeof DashboardFragments)[] = ['Bills', 'Recommendations'];
+  const separatorAfter: (keyof typeof DashboardFragments)[] = ['IncomeTimeline'];
   const [selectedItem, setSelectedItem] = useState<''|keyof typeof DashboardFragments>('SalesChannel');
 
   return (

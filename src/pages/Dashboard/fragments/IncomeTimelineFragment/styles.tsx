@@ -1,12 +1,7 @@
 import styled from 'styled-components';
+import { FragmentContainer } from '../FragmentStyles';
 
-export const Container = styled.div`
-  height: 100%;
-  max-height: 100vh;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
+export const Container = styled(FragmentContainer)`
 `;
 export const DateBar = styled.div`
   display: flex;
