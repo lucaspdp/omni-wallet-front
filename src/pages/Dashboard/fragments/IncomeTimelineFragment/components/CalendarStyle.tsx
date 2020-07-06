@@ -77,6 +77,9 @@ export const Container = styled.div`
       .antecipacao{
         background: #F5B41A;
       }
+      .fisica{
+        background: #f71963;
+      }
       .repasse{
         background: #B571F9;
       }
