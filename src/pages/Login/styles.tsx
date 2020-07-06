@@ -12,20 +12,20 @@ export const Content = styled.div`
 export const Left = styled.div`
   width: 50%;
   height: 100%;
-  background: #2dbc9c;
+  background: #2DBC9C;
   overflow-y: hidden;
   position: relative;
 
-  h2 {
+  h2{
     width: 90%;
     position: absolute;
     top: 30%;
     font-size: 50px;
     z-index: 2;
     left: 5%;
-    color: #f1f1f1;
+    color: #F1F1F1;
   }
-  img {
+  img{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -35,7 +35,7 @@ export const Left = styled.div`
     z-index: 1;
   }
 
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 750px){
     width: 100%;
   }
 `;
@@ -50,42 +50,53 @@ export const Right = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  @media only screen and (max-width: 750px) {
+  overflow-y: scroll;
+
+  @media only screen and (max-width: 750px){
     width: 80%;
     height: 90%;
 
     position: absolute;
     top: 5%;
     left: 10%;
+    overflow-y: scroll;
 
     border-radius: 10px;
   }
 `;
-export const Logo = styled.img`
+export const Logo = styled.img` 
+
   margin-right: 20px;
+
 `;
 
 export const BrandName = styled.h1`
+  
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 30px;
   font-weight: 600;
+
 `;
 
 export const Title = styled.div`
+
   display: flex;
   align-items: center;
   margin-top: 20%;
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 750px){
+  
     margin-top: 50px;
+
   }
+
 `;
 
 export const Welcome = styled.h2`
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
   font-size: 18px;
-  color: #4d4f5c;
-  opacity: 0.5;
+  color: #4D4F5C;
+  opacity: 0.5; 
   margin: 40px 0px;
   text-align: center;
 `;
@@ -94,7 +105,7 @@ export const FormLogin = styled.form`
   display: flex;
   flex-direction: column;
   width: 60%;
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 750px){
     width: 80%;
     max-width: 300px;
   }
@@ -107,12 +118,12 @@ export const FormDiv = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  div {
+  div{
     height: 18px;
     display: flex;
     align-items: center;
   }
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 750px){
     flex-direction: column;
   }
 `;
@@ -121,28 +132,29 @@ export const FormInput = styled.input`
   height: 30px;
   color: var(--font-primary);
 
-  border-bottom: 2px solid #e9e9f0;
+  border-bottom: 2px solid #E9E9F0;
   transition: border-bottom-color 0.2s;
   background: transparent;
 
-  &::placeholder {
+  &::placeholder{
     font-size: 15px;
     color: var(--font-primary);
     margin-bottom: 2px;
     transition: opacity 0.2s;
   }
-  &:focus {
+  &:focus{
     outline: none;
     border-bottom-color: var(--primary-color);
-    &::placeholder {
+    &::placeholder{
       color: var(--font-primary);
       opacity: 0.95;
     }
   }
 
-  & + input {
+  &+input{
     margin-top: 30px;
   }
+
 `;
 export const RememberMe = styled.input`
   margin-right: 10px;
@@ -158,30 +170,32 @@ export const FormLink = styled(Link)`
 
   transition: border-bottom-color 0.2s;
 
-  &:visited {
+  &:visited{
     color: var(--font-primary);
   }
 
-  &:hover {
+  &:hover{
     border-bottom-color: var(--primary-color);
   }
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 750px){
     margin-top: 10px;
   }
 `;
 export const TermsOfUse = styled.span`
+
   margin-top: auto;
+
 `;
 
 type FormButtonType = {
-  isPrimaryColor?: boolean;
-};
+  isPrimaryColor ? : boolean;
+}
 
 export const FormButton = styled.button<FormButtonType>`
-  background-color: ${(props) => (props.isPrimaryColor ? 'var(--primary-color)' : '#fff')};
+  background-color: ${props => props.isPrimaryColor ? 'var(--primary-color)': '#fff'};
   border: 1px solid;
-  border-color: ${(props) => (props.isPrimaryColor ? 'var(--primary-color)' : 'var(--font-primary)')};
-  color: ${(props) => (props.isPrimaryColor ? '#fff' : 'var(--font-primary)')};
+  border-color: ${props => props.isPrimaryColor ? 'var(--primary-color)': 'var(--font-primary)'};
+  color: ${props => props.isPrimaryColor ? '#fff': 'var(--font-primary)'};
 
   height: 50px;
   width: 45%;
@@ -191,23 +205,20 @@ export const FormButton = styled.button<FormButtonType>`
 
   transition: filter 0.2s, border-color 0.2s, color 0.2s;
 
-  &:hover {
-    ${(props) =>
-      props.isPrimaryColor
-        ? `
+  &:hover{
+    ${props => props.isPrimaryColor ? `
       filter: brightness(105%);
-    `
-        : `
+    `: `
       border-color: #888;
       color: #888;
     `};
   }
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 750px){
     height: 35px;
     width: 100%;
     font-size: 16px;
 
-    & + & {
+    & + &{
       margin-top: 5px;
     }
   }
