@@ -107,8 +107,7 @@ export default function IncomeTimelineFragment() {
         if(typeSort <= 0.25) type = "pgFornecedor";
         else if(typeSort <= 0.5) type = "pgFuncionarios";
         else if(typeSort <= 0.75) type = "antecipacao";
-        else if(typeSort <= 0.9) type = "repasse";
-        else type = type = "fisica";
+        else type = "repasse";
         //||
         const simValue = faker.random.number(25000);
         if(totalGain > gain){
@@ -286,15 +285,11 @@ export default function IncomeTimelineFragment() {
             </div>
             <div className="b2w">
               <div className="dot"></div>
-              <span>Loja online</span>
-            </div>
-            <div className="fisica">
-              <div className="dot"></div>
-              <span>Loja física</span>
+              <span>B2W</span>
             </div>
             <div className="antecipacao">
               <Antecipacao src={AntecipacaoSVG} alt="Antecipacao" />
-              <span>Antecipação</span>
+              <span>Antecipacao</span>
             </div>
           </Legenda>
           <Despesas>

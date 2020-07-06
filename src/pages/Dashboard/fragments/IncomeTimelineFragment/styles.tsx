@@ -179,11 +179,6 @@ export const Top = styled.ul`
       background: #B571F9;
     }
   }
-  .fisica{
-    .dot{
-      background: #f71963;
-    }
-  }
   .func{
     .dot{
       background: #6BBBD2;
