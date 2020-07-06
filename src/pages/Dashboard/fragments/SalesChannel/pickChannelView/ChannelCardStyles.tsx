@@ -62,7 +62,7 @@ export const ChartFilters = styled.div`
 `;
 
 export const ChartFiltersTitle = styled.div`
-  font-size: 14pt;
+  font-size: 11pt;
   font-weight: bold;
 `;
 

@@ -29,26 +29,26 @@ export const DashboardFragments = asFragment({
     label: 'Calendário de Recebíveis',
     fragment: <IncomeTimelineFragment></IncomeTimelineFragment>,
   },
-  // Bills
+  /*// Bills
   Bills: {
     icon: BillsIcon,
     label: 'Contas a Pagar',
     fragment: <BillsFragment />,
-  },
+  },*/
   // Simulate
   SimulateScenario: {
     icon: SimulationIcon,
     label: 'Simular',
     fragment: <SimulationFragment />,
   },
-  // Recommendation
+  /*// Recommendation
   Recommendations: {
     icon: RecommendationIcon,
     label: 'Recomendações',
     fragment: <RecommendationFragment />,
-  },
+  },*/
   // -- Separator
-  // Configuration
+ /* // Configuration
   Configuration: {
     icon: ConfigurationIcon,
     label: 'Configurações',
@@ -58,7 +58,7 @@ export const DashboardFragments = asFragment({
     icon: PrivacyIcon,
     label: 'Privacidade',
     fragment: <PrivacyFragment />,
-  },
+  },*/
 });
 
 interface DashboardFragmentDefinition {

@@ -16,12 +16,13 @@ import {
   ChartFilterPickTimeInterval,
   ChartFilterPickTimeUnit,
   ChartFiltersTitle,
+  SalesAllChannelsViewer,
 } from './AllChannelsStyles';
 import { FullRowCard } from '../../FragmentStyles';
 import MarketPerformanceResumeCard from '../pickChannelView/marketPerformanceResumeCard/MarketPerformanceResumeCard';
-import { IMarketplaceData, IMarketplaceOrder } from '../../../../../data/DataMock';
+import { IMarketplaceData } from '../../../../../data/DataMock';
 import { Marketplaces, Repository } from '../../../../../data/marketplaces/MarketplaceRepository';
-
+import SalesRanking from './salesRanking/SalesRanking';
 import { MarketplaceUtilities } from '../../../../../data/marketplaces/MarketplaceUtilities';
 import { TimeIntervalOption } from '../pickChannelView/ChannelCard';
 import { timeIntervalBuilders } from '../pickChannelView/timeUtils/TimeUtils';
@@ -124,8 +125,13 @@ export default function AllChannelsVisualization() {
   }, [selectedTimeInterval, allMarketplaces, allUtilities]);
 
   useEffect(() => {
-    console.log('GRAPHIC DATA', graphicData);
+    
   }, [graphicData]);
+
+  let topSales : any[] = [];
+  for(let name in allUtilities) {
+    //allUtilities[name].get
+  }
 
   let amountFromPreviousPeriod = 0;
   let amountFromCurrentPeriod = 0;
@@ -277,6 +283,9 @@ export default function AllChannelsVisualization() {
             </MarketplacePerformanceChart>
           </MarketplaceChartDisplay>
         </SelectViewRangeContainer>
+        <SalesAllChannelsViewer>
+          <SalesRanking topSaleDetails={[]}></SalesRanking>
+        </SalesAllChannelsViewer>
       </FullRowCard>
     </Container>
   );

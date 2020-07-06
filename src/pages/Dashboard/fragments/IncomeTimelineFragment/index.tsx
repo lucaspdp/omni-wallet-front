@@ -15,6 +15,7 @@ import {
   Antecipacao
 } from './styles';
 import Calendar from './components/Calendar';
+import Chart from './components/Chart';
 
 export default function IncomeTimelineFragment() {
 
@@ -305,7 +306,8 @@ export default function IncomeTimelineFragment() {
         </Top>
         <Calendar gains={gains}/>
       </IncomingCalendar>
-     
+     <Chart></Chart>
+
     </Container>
   );
 }
